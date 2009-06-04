@@ -1,0 +1,148 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture - Custom Environment</h1
+              ><p>Applications can add to the Environment custom data.&nbsp; In <a href="http://github.com/alsonkemp/turbinado/tree/master/Config/App.hs.sample" target="_blank">Config/App.hs</a>, an application can define a custom AppEnvironment type.&nbsp; Then using the <em>customSetupFilters</em>, <em>customPreFilters</em> and <em>customPostFilters</em>, the application can manage its environment:</p>
+<ul>
+<li><em>customSetupFilters</em> are called at the server startup and can be used to initialize the AppEnvironment (or conduct any other custom server startup activities).</li>
+<li><em>customPreFilters</em> are called at the start of each request cycle and can be used to do manipulate the AppEnvironment (or conduct any other custom request activities).</li>
+<li><em>customPostFilters</em> are similar to <em>customPreFilters</em> but are called after the request has been processed.</li>
+</ul>
+<h3>AppEnvironment</h3>
+<p>For a simple example, assume that the application wants to track the request count.&nbsp; Since the server can run many threads, the count needs to be held in an MVar.&nbsp; AppEnvironment might be defined as:</p>
+<pre>data AppEnvironment = AppEnvironment (MVar Int)<br /><br />customSetupFilters = [setupAppEnvironment]<br />customPreFilters = [incrementAppEnvironmentCounter]<br />customPostFilters = [] -- Not used<br /><br />setupAppEnvironment = do e &lt;- getEnvironment<br />                      counter &lt;- newMVar 0<br />                      putEnvironment $ e {getAppEnvironment = Just $ AppEnvironment counter}<br /><br />incrementAppEnvironmentCounter = do e &lt;- getEnvironment<br />                          let AppEnvironment mv = fromJust $ getAppEnvironment e<br />                          modifyMVar_ (return . (+1)) <br /><br /></pre>
+<h3>customPreFilters and customPostFilters<br /></h3>
+<p>The most obvious usage of customPreFilters and customPostFilters is to handle authentication.&nbsp; Using a to-be-written authentication library, something like the following would handle the authentication cookie:</p>
+<pre>customPreFilters = [decipherCookie<br />                   , checkForUserInCookie]<br />customPostFilters = [updateUserCookie<br />                    , cipherCookie]<br /></pre></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>

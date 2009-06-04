@@ -1,0 +1,194 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture</h1
+              ><h2>Basics</h2>
+<p>Turbinado is composed of:</p>
+<ul class="standard-list">
+<li> <em>Controllers</em> receive requests, retrieve <em>Models</em> and put together data to be used by the Views. </li>
+<li> <em>Models</em> are mappings of the database tables to Haskell datatypes. </li>
+<li> <em>Views</em> produce XML, HTML, etc. </li>
+<li> <em>Components</em> are modular, reusable Controllers and Views which are designed to be used within other Views. </li>
+</ul>
+<h2>The Turbinado 'Environment'</h2>
+<p>Turbinado uses a large <a href="http://github.com/alsonkemp/turbinado/tree/master/Turbinado/Environment/Types.hs">Environment</a> datatype to hold Server, Application and Request-specific data.  The Environment is composed of a large number of fields to hold DatabaseConnection, Request, Response, etc.&nbsp; Each of the fields in the Environment is held within a Maybe datatype in order to allow the Environment to be partially constructed.  For example, when the <a href="http://github.com/alsonkemp/turbinado/tree/master/Turbinado/Server.hs">Server</a> starts up, it constructs a partially completed Environment which contains only the fields which are used by the Server.  As requests come in, the Server hands to the appropriate Controller an Environment which is specialized for that Controller's Request.  As the Controllers and Views operate, they fill in the Response field of the Environment.</p>
+<p>A partial listing of fields in the Environment is:</p>
+<ul>
+<li><em>CodeStore</em>: cached, compiled versions of Models, Views, Controllers and Components.</li>
+<li><em>Database</em>: the connection to the database.</li>
+<li><em>Request</em>: the parsed HTTP Request.</li>
+<li><em>Response</em>: the HTTP Response generated by the Controller or View.</li>
+<li><em>Settings</em>: settings which are derived from the current request.</li>
+<li><em>ViewData</em>: data which is sent from the Controller to the View for display.</li>
+</ul>
+<p>The Environment also includes an <em>AppEnvironment</em> field for a application specific data type.</p>
+<p>The Environment is accessible to both Controllers and Views because each is an instance of the HasEnvironment class and implements [get|set]Environment.</p>
+<h2>Life Cycle</h2>
+<h3>Server Life Cycle</h3>
+<p>At startup, the server:</p>
+<ul>
+<li>Binds to the specified port;</li>
+<li>Builds the route table;</li>
+<li>Builds the MIME type dictionary;</li>
+<li>Initializes the Logger and CodeStore;</li>
+<li>Runs any application specific setup filters.</li>
+<li>(1) Waits for a request.</li>
+<li>After receiving a request, a WorkerThread is created (if the WorkerPool is empty) and handed the partially constructed Environment and the request connection.</li>
+<li>Goto (1)</li>
+</ul>
+<h3>Request Life Cycle</h3>
+<p>When the connection is handed to the WorkerThread, the WorkerThread:</p>
+<ul>
+<li>Continues building the Environment;</li>
+<li>Receives and parses the inbound Request;</li>
+<li>Tries to retrieve static content (e.g. an image) to satisfy the Request;</li>
+<li>Runs any application specific customPreFilters;</li>
+<li>Retrieves and runs the Controller specified by the Routes;</li>
+<li>Retrieves and runs the Layout (which should insertDefaultView);</li>
+<li>Runs any application specific customPostFilters;</li>
+<li>Sends back to the client the Response contained within the Environment.</li>
+</ul>
+<h2>ORM</h2>
+<p>Turbinado provides a code generator to generate an Object Relational Mapping (http://en.wikipedia.org/wiki/Object-relational_mapping) from a database to a set of Models (Haskell datatypes and database functions).</p>
+<p>Following the example set by .netTiers, each model is composed of multiple files (using the Page model as an example):</p>
+<ul>
+<li>Page.hs: the editable portion of the Page Model, which imports the various pieces of the Page Model.&nbsp; See <a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Models/Page.hs" target="_blank">http://github.com/alsonkemp/turbinado-website/tree/master/App/Models/Page.hs</a>.</li>
+<li>Bases/Page*.hs: the automatically generated "base" code which represents the database table "page" and its functions and relations.&nbsp; These file should not be edited.&nbsp; See <a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Models/Bases/PageType.hs" target="_blank">Bases/PageType.hs</a>, <a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Models/Bases/PageFunctions.hs" target="_blank">Bases/PageFunctions.hs</a> and <a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Models/Bases/PageRelations.hs" target="_blank">Bases/PageRelations.hs</a>.</li>
+</ul>
+<p>The ORM automates basic CRUD functionality, provides standard Haskell datatypes for database tables and uses the database's foreign keys to determine table-table relationships.&nbsp; As an example ofhow to retrieve all Pages order by "title" where the "_id" starts with "prefix":</p>
+<p><em>&nbsp;&nbsp; pages &lt;- findAllWhereOrderBy "_id like ?" [toSql $ prefix ++ "%"] "title"</em></p>
+<p>A Page is defined by the ORM as:</p>
+<p><em>&nbsp;&nbsp; <span class="kr">data</span> <span class="kt">Page</span> <span class="ow">=</span> <span class="kt">Page</span> <span class="p">{</span>&nbsp; <span class="n">_id</span> <span class="ow">::</span> <span class="kt">String</span><span class="p">,</span> <span class="n">authorId</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Int64</span><span class="p">,</span> <span class="n">content</span> <span class="ow">::</span> <span class="kt">String</span><span class="p">,</span> <span class="n">title</span> <span class="ow">::</span> <span class="kt">String</span><span class="p">,</span> <span class="n">version</span> <span class="ow">::</span> <span class="kt">Int64</span><span class="p">}</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Eq</span><span class="p">,</span> <span class="kt">Show</span><span class="p">)</span></em></p>
+<p><em><span class="p"><br /></span></em></p></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>

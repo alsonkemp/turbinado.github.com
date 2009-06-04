@@ -1,0 +1,182 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture - Controllers</h1
+              ><p>Controllers receive the request, manipulate Models and send the request onwards.&nbsp; A basic Controller looks something like:</p>
+<div id="LC4" class="line">
+<pre><span class="kr">import</span> <span class="nn">Turbinado.Controller</span></pre>
+</div>
+<div id="LC5" class="line">
+<pre><span class="kr">import</span> <span class="nn">App.Models.Page</span></pre>
+</div>
+<div id="LC6" class="line">
+<pre>&nbsp;</pre>
+</div>
+<div id="LC7" class="line">
+<pre><span class="nf">index</span> <span class="ow">::</span> <span class="kt">Controller</span> <span class="nb">()</span></pre>
+</div>
+<div id="LC8" class="line">
+<pre><span class="nf">index</span>  <span class="ow">=</span> <span class="kr">do</span> <span class="n">pages</span> <span class="ow">&lt;-</span> <span class="n">findAll</span></pre>
+</div>
+<div id="LC9" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">setViewDataValue</span> <span class="s">"pages-list"</span> <span class="o">$</span> <span class="n">map</span> <span class="p">(</span><span class="nf">\</span><span class="n">p</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">title</span> <span class="n">p</span><span class="p">,</span> <span class="n">_id</span> <span class="n">p</span><span class="p">))</span> <span class="n">pages</span></pre>
+</div>
+<div id="LC10" class="line">
+<pre>&nbsp;</pre>
+</div>
+<div id="LC11" class="line">
+<pre><span class="nf">show</span> <span class="ow">::</span> <span class="kt">Controller</span> <span class="nb">()</span></pre>
+</div>
+<div id="LC12" class="line">
+<pre><span class="nf">show</span>  <span class="ow">=</span> <span class="kr">do</span> <span class="n">id'</span>  <span class="ow">&lt;-</span> <span class="n">getSetting_u</span> <span class="s">"id"</span></pre>
+</div>
+<div id="LC13" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">p</span> <span class="ow">&lt;-</span> <span class="n">find</span> <span class="n">id'</span></pre>
+</div>
+<div id="LC14" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">setViewDataValue</span> <span class="s">"page-title"</span> <span class="p">(</span><span class="n">title</span> <span class="n">p</span><span class="p">)</span></pre>
+</div>
+<div id="LC15" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">setViewDataValue</span> <span class="s">"page-content"</span> <span class="p">(</span><span class="n">content</span> <span class="n">p</span><span class="p">)<br /><br /></span></pre>
+<p><span class="p">All Controllers must import Turbinado.Controller.&nbsp; In addition, this controller uses the Page Model, so imports App.Models.Page.&nbsp; Since only one Model is imported, the import doesn't have to be qualified; if more than one Model is imported, then the Model imports should be qualified (e.g. <em>import qualified App.Model.Page as Page</em>).</span></p>
+<h3><span class="p">ViewData</span></h3>
+<p><span class="p">The ViewData Environment value is intended to allow Controllers to send data to the View.&nbsp; The <em>index</em> function uses the ViewData to hold a list of tuples of <em>title</em> and <em>_id</em>.&nbsp; The View can then retrieve the values using <em>getViewDataValue</em>.<br /></span></p>
+<p><span class="p">Only <a href="http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-Typeable.html" target="_blank">Typeable</a> types (ie. instances of Typeable) can be stored as values in the ViewData.&nbsp; If you need to store a non-Typeable value in the ViewData, you must convert the value to a value which is an instance of Typeable.&nbsp; The most obvious way to do this is to convert your value to a String (since the View is going to display a string anyways).</span></p>
+<h3>Layout and View</h3>
+<p>After the Controller finished, the Layout is called (by default /App/Layouts/Default.hs).&nbsp; If the Controller would not like a Layout to be used, the Controller can call <em>clearLayout</em> to prevent a Layout being used with the View.&nbsp; This is useful when returning XML.</p>
+<h3><span class="p">Controller Returns</span></h3>
+<p><span class="p">Generally a Controller will work with a few Models, put together some ViewData for the View, and then <em>return ()</em>.&nbsp; In this case, the Layout/View is called directly after the Controller returns.&nbsp; </span></p>
+<p><span class="p">However, if the Controller produces a valid, complete Response, then the Layout/View will not be called and the Controller-produced Response will be returned to the client.&nbsp; For example, the Controller can do <em>redirectTo "/SomePage/SomeAction"</em> and that will generate a valid HTTP 302 response.<br /></span></p>
+</div></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>

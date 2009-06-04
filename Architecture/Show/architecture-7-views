@@ -1,0 +1,169 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture - Views</h1
+              ><p>Views are templates that produce (X)HTML.&nbsp; You write them using well-formed HTML and special tags (much as with PHP). Views (as all of Haskell) are white space sensitive.</p>
+<p>All Views <strong>must</strong> have a <em>markup</em> function.&nbsp; The system automatically looks for the <em>markup</em> function in Views.</p>
+<h3>Example</h3>
+<p>For a large example, see <a href="http://github.com/alsonkemp/turbinado-website/blob/master/App/Layouts/Default.hs" target="_blank">the Layout used by this website</a>.&nbsp; This Layout includes a helper function within the Layout file.</p>
+<p>A simpler example:</p>
+<div id="LC1" class="line">
+<pre><span class="nf">import Data.Maybe<br /><br />markup</span><span class="ow">=</span> <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span></pre>
+</div>
+<div id="LC2" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="kt">Turbinado</span><span class="o">?&lt;/</span><span class="n">h1</span><span class="o">&gt;</span></pre>
+</div>
+<div id="LC3" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="ow">=</span><span class="s">"float:right"</span><span class="o">&gt;</span></pre>
+</div>
+<div id="LC4" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="ow">=</span><span class="s">"http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/TurbinadoSugar.jpg/757px-TurbinadoSugar.jpg"</span> <span class="n">width</span><span class="ow">=</span><span class="s">"300"</span> <span class="o">/&gt;</span></pre>
+</div>
+<div id="LC5" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span></pre>
+</div>
+<div id="LC6" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">Turbinado</span> <span class="n">is</span> <span class="n">an</span> <span class="n">easy</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">use</span><span class="p">,</span> <span class="o">&lt;%</span> <span class="n">anchorTag</span> <span class="s">"/Home/Performance"</span> <span class="s">"fricking fast"</span> <span class="o">%&gt;</span> <span class="n">web</span> <span class="n"><br />            application</span> <span class="n">framework</span> <span class="n">for</span> <span class="kt">Haskell</span> <span class="p">(</span><span class="n">and</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">a</span><span class="n">href</span><span class="ow">=</span><span class="s">"http://www.haskell.org/ghc"</span><span class="o">&gt;</span><span class="kt">Glorious</span> <span class="kt">Glasgow</span> <br />            <span class="kt">Haskell</span> <span class="kt">Compiler</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.</span>  <span class="kt">Naturally</span><span class="p">,</span> <span class="n">this</span> <span class="n">website</span> <span class="n">is</span> <span class="n">written</span> <span class="kr">in</span> <span class="kt">Turbinado</span><span class="p">,</span> <span class="n">so</span> <span class="n">head</span> <span class="n">over</span> <span class="n">to</span> <span class="n">the</span> <span class="o"><br />            &lt;%</span> <span class="n">anchorTag</span><span class="s">"http://github.com/alsonkemp/turbinado-website/tree/master"</span> <span class="s">"Git repo"</span> <span class="o">%&gt;</span> <span class="n">to</span> <span class="n"><br />            see</span> <span class="n">how</span> <span class="n">easy</span> <span class="n">it</span> <span class="n">is</span> <span class="n">to</span> <span class="n">code</span> <span class="n">websites</span> <span class="kr">in</span> <span class="kt">Turbinado</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span></pre>
+</div>
+<div id="LC30" class="line">
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;<br /></span></pre>
+<p>In the example above:</p>
+<ul>
+<li>Standard-ish HTML markup is used.</li>
+<li>Proper whitespace indentation is used.</li>
+<li>A call is made to <em>anchorTag</em> to automatically format an anchor tag.</li>
+<li>A module is imported (though not used).</li>
+</ul>
+</div></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>

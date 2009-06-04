@@ -1,0 +1,165 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture - The ORM</h1
+              ><p>ORM = Object-Relational Mapper, though for Haskell it's really more of a Type-Relational Mapper.</p>
+<p>Assuming that you have a databaseConnection set up in Config/App.hs and that you have a database, the ORM can be run by:</p>
+<pre>runghc scripts/GenerateModels.hs<br /><br /></pre>
+<p>After the script runs, you should have a number of files in App/Models.&nbsp; Assuming that you have Page and Comment tables:</p>
+<pre>App/Models/Page.hs<br />App/Models/Bases/PageType.hs<br />App/Models/Bases/PageFunctions.hs<br />App/Models/Bases/PageRelations.hs<br />App/Models/Comment.hs<br />App/Models/Bases/CommentType.hs<br />App/Models/Bases/CommentFunctions.hs<br />App/Models/Bases/CommentRelations.hs<br /></pre>
+<p>In general you can ignore the /Bases/* files.&nbsp; To add additional functionality to the Page model, add functions to App/Models/Page.hs (do not add them to any /Bases/* files because the ORM will overwrite the changes).&nbsp; To use a Page, import App.Models.Page, though you'll probably want to qualify the import to avoid naming conflicts:</p>
+<pre>import qualified App.Models.Page as Page<br />import qualified App.Models.Comment as Comment<br /><br />dummy = do p &lt;- Page.find "some page"<br />           Comment.deleteWhere "pageId = ?" [toSql $ _id p]<br /></pre>
+<h3>Tables to Types<br /></h3>
+<p>Database tables and columns are directly converted as Types and functions, so the ORM will automatically capitalize table names so that they are valid type names and will automatically lowercase column names so that they are valid as functions.&nbsp; As an example, these tables and columns will be mapped to types as follows:</p>
+<pre>Database<br />-----------<br />  page<br />    ID<br />    text<br />    author_id<br />  Comment<br />    pageID<br />    Text<br /><br />Haskell Types And Functions<br />--------------------------------<br />  Page<br />      iD<br />      text<br />      author_id<br />  Comment<br />      pageID<br />      text<br /></pre>
+<p>Bits to notice:</p>
+<ul>
+<li>The "page" table was capitalized in order to become a valid type name.</li>
+<li>The "Comment" table was fine the way it was.</li>
+<li>The "ID" column was lowercased in order to become a valid function name (but the changed name&nbsp; "iD" is odd).</li>
+<li>The "Text" column (in Comment) was lowercased in order to become a valid function name.</li>
+<li>Unlike in Ruby on Rails, "author_id" is not converted to AuthorId.</li>
+</ul>
+<h3>The "id" Column</h3>
+<p>In Ruby On Rails, it's standard to have a column named "id" as the primary key on tables.&nbsp; It's a nice convention, but "id" is already a function name in Haskell.&nbsp; So the convention in Turbinado is to name the "id" column "_id".</p>
+<h3>Conventions</h3>
+<p>Following are conventions for Turbinado databases:</p>
+<ul>
+<li>Table names are singular.</li>
+<li>Column names do not include the table name as a prefix (e.g. "text" is preferred to "pageText").</li>
+<li>Partial camel case is preferred to underscores for column names (e.g. "firstName" rather than "first_name").</li>
+<li>Tables should usually include an "_id" column as the primary key.</li>
+<li>Foreign keys should be named for the target table and column (e.g. "page_id" refers to Page : _id).</li>
+</ul></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>

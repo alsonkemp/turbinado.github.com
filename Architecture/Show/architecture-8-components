@@ -1,0 +1,156 @@
+<html
+><head
+  ><meta name="verify-v1" content="w8VesxPmDH0sX71+bZUok+LyY0eDG5aM6v8odpbkEm8="
+    ><title
+    >Turbinado: MVC Framework for Haskell</title
+    ><meta name="keywords" content="turbinado, haskell, mvc, model, view, controller, ruby, rails"
+    > </meta
+    ><meta name="description" content="Turbinado is a Model-View-Controller-ish web framework written in Haskell.  Ruby On Rails comes to Haskell."
+    > </meta
+    ><link media="screen" type="text/css" rel="stylesheet" href="/css/normalize.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/pressurized.css"><link media="screen" type="text/css" rel="stylesheet" href="/css/turbinado.css"><script type="text/javascript" src="/js/jquery.js"></script><script type="text/javascript" src="/js/jsddm.js"></script><script type="text/javascript">   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript">   var pageTracker = _gat._getTracker("UA-6158816-1");   pageTracker._trackPageview(); </script> </head
+  ><body
+  ><div id="wrapper"
+    ><div id="header"
+      ><div id="logo"
+        ><h1
+          ><a href="http://www.turbinado.org"
+            ><img src="/images/turbinado.jpg"
+              ><span style="left:140px; position:absolute; top:65px;"
+              >Turbinado
+                      </span
+              ></a
+            ></h1
+          ></div
+        ></div
+      ><div id="menu"
+      ><ul
+        ><li class=""
+          ><a href="/Home/Index"
+            >Home</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Performance"
+            >Performance</a
+            ></li
+          ><li class="active"
+          ><a href="/Architecture"
+            >Architecture</a
+            ></li
+          ><li class=""
+          ><a href="/Home/Install"
+            >Install</a
+            ></li
+          ><li class=""
+          ><a href="/Tutorial"
+            >Tutorial</a
+            ></li
+          ><li class=""
+          ><a href="/Develop"
+            >Develop</a
+            ></li
+          ><li class=""
+          ><a href="/FAQ"
+            >FAQ</a
+            ></li
+          ></ul
+        ></div
+      ><div id="page"
+      ><div id="view"
+        ><div
+          ><div class="page-listing"
+            ><h1
+              >Pages
+          </h1
+              ><div style='padding: 0pt 5px;'>
+ <a href="architecture">
+  Architecture
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-1Config">
+  Architecture - Configuration
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-2routes">
+  Architecture - Routes
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-4ORM">
+  Architecture - The ORM
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-5-controllers">
+  Architecture - Controllers
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7a-layouts">
+  Architecture - Layouts
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-7-views">
+  Architecture - Views
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-8-components">
+  Architecture - Components
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-91-environment">
+  Architecture - Environment
+ </a>
+</div>
+<div style='padding: 0pt 5px;'>
+ <a href="architecture-92-custom-app-environment">
+  Architecture - Custom Environment
+ </a>
+</div>
+</div
+            ><div class="page-content"
+            ><h1
+              >Architecture - Components</h1
+              ><p>Turbinado adds to the usual MVC organization "components", which are a way to group together a Controller and Views that are tightly related and are used by other Controllers and Views. Components are very similar to Rails' <a href="http://cells.rubyforge.org/" target="_blank">Cells</a>.&nbsp; Many of the details of Components' Controllers and Views are the same as for regular <a href="../../Architecture/Show/architecture-5-controllers">Controllers</a> and <a href="../../Architecture/Show/architecture-7-views">Views</a> so those details will be omitted here.</p>
+<p>As an example of the creation and usage of a component, see:</p>
+<ul>
+<li><a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Components/Page/Controller.hs" target="_blank">/App/Components/Page/Controller.hs</a> - the Controller for the Page Components</li>
+<li><a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Components/Page/View/List.hs" target="_blank">/App/Components/Page/Views/List.hs</a> - the View for a list of Pages</li>
+<li><a href="http://github.com/alsonkemp/turbinado-website/tree/master/App/Components/Page/View/Show.hs" target="_blank">/App/Components/Page/Views/Show.hs</a> - the View for a particular Page</li>
+<li><a href="http://github.com/alsonkemp/turbinado-website/blob/master/App/Controllers/Architecture.hs" target="_blank">/App/Controllers/Architecture.hs</a> - a Controller which uses the Page Component (actually, the Component is used in the View)</li>
+<li><a href="http://github.com/alsonkemp/turbinado-website/blob/master/App/Views/Architecture/Show.hs" target="_blank">/App/Views/Architecture/Show.hs</a> - a View which uses hte Page Component (look for the insertComponent call)</li>
+</ul>
+<p>Many pages on the Turbinado website use and display Pages.&nbsp; Rather than having every controller understand how to load and display a Page, all of the Page load/display functionality was placed into the Page Component.&nbsp; Now it easy for any Controller/View to use Page functionality without having to understand Pages.</p>
+<h3>Organization</h3>
+<p>Components have:</p>
+<ul>
+<li>A single controller in /App/Components/ComponentName/Controller.hs.</li>
+<li>A set of Views in /App/Components/ComponentName/Views/*.hs.</li>
+</ul>
+<h3>Usage</h3>
+<p>Components are called in Views as follows:</p>
+<pre><span class="o">&lt;%</span> <span class="n">insertComponent</span> <span class="s">"Page"</span> <span class="s">"ListOnly"</span> <span class="p">[(</span><span class="s">"pages-prefix"</span><span class="p">,</span> <span class="s">"architecture"</span><span class="p">)]</span> <span class="o">%&gt;<br /></span></pre>
+<p>This inserts a Component called "Page" and calls the "ListOnly" function of the Component.&nbsp; In addition, a setting is created with "pages-prefix" equal to "architecture".&nbsp; This particular call inserts a list of Pages whose ids start with "architecture" and is used on the Architecture page to show a list of Architecture Pages.</p></div
+            ></div
+          ></div
+        ></div
+      ><div style="clear: both;"
+      ></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Questions - Alson (at) AlsonKemp.com</p
+      ><p
+      >Copyright (c) 2008, 2009 - Alson Kemp. All rights reserved.</p
+      ><p
+      >Design by <a href="http://www.freecsstemplates.org/"
+        >Free CSS Templates</a
+        >.</p
+      ></div
+    ></body
+  ></html
+>
