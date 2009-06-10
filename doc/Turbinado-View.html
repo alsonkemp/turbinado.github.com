@@ -1,0 +1,689 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.View</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-View.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-View.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.View</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Functions
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AevalView"
+>evalView</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdefaultContentType"
+>defaultContentType</A
+> :: String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AView"
+>View</A
+> = StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunView"
+>runView</A
+> ::  <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO (a, <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>liftIO</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Acatch"
+>catch</A
+> ::  <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a -&gt; (<A HREF="Turbinado-View-Exception.html#t%3AException"
+>Exception</A
+> -&gt; <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a) -&gt; <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertView"
+>insertView</A
+> :: String -&gt; String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertDefaultView"
+>insertDefaultView</A
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertComponent"
+>insertComponent</A
+> :: String -&gt; String -&gt; [(String, String)] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>prettyHtml</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-View-Helpers.html"
+>Turbinado.View.Helpers</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-View-HTML.html"
+>Turbinado.View.HTML</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-CodeStore.html"
+>Turbinado.Environment.CodeStore</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Params.html"
+>Turbinado.Environment.Params</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Request.html"
+>Turbinado.Environment.Request</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Response.html"
+>Turbinado.Environment.Response</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Settings.html"
+>Turbinado.Environment.Settings</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Types.html"
+>Turbinado.Environment.Types</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-ViewData.html"
+>Turbinado.Environment.ViewData</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:evalView"
+><A NAME="v%3AevalView"
+></A
+></A
+><B
+>evalView</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+> -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View.html#evalView"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:defaultContentType"
+><A NAME="v%3AdefaultContentType"
+></A
+></A
+><B
+>defaultContentType</B
+> :: String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View.html#defaultContentType"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:View"
+><A NAME="t%3AView"
+></A
+></A
+><B
+>View</B
+> = StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-Monad.html#View"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The View monad is a wrapper around
+ the IO monad, 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:runView"
+><A NAME="v%3ArunView"
+></A
+></A
+><B
+>runView</B
+> ::  <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO (a, <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+>)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-Monad.html#runView"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Runs a View computation in a particular environment. Since View wraps the IO monad,
+ the result of running it will be an IO computation.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+><A NAME="1"
+>Functions
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>liftIO</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:catch"
+><A NAME="v%3Acatch"
+></A
+></A
+><B
+>catch</B
+> ::  <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a -&gt; (<A HREF="Turbinado-View-Exception.html#t%3AException"
+>Exception</A
+> -&gt; <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a) -&gt; <A HREF="Turbinado-View.html#t%3AView"
+>View</A
+> a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-Monad.html#catch"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Catch a user-caused exception.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:insertView"
+><A NAME="v%3AinsertView"
+></A
+></A
+><B
+>insertView</B
+> :: String -&gt; String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View.html#insertView"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:insertDefaultView"
+><A NAME="v%3AinsertDefaultView"
+></A
+></A
+><B
+>insertDefaultView</B
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View.html#insertDefaultView"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:insertComponent"
+><A NAME="v%3AinsertComponent"
+></A
+></A
+><B
+>insertComponent</B
+> :: String -&gt; String -&gt; [(String, String)] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View.html#insertComponent"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>prettyHtml</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-View-Helpers.html"
+>Turbinado.View.Helpers</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-View-HTML.html"
+>Turbinado.View.HTML</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-CodeStore.html"
+>Turbinado.Environment.CodeStore</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Params.html"
+>Turbinado.Environment.Params</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Request.html"
+>Turbinado.Environment.Request</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Response.html"
+>Turbinado.Environment.Response</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Settings.html"
+>Turbinado.Environment.Settings</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-Types.html"
+>Turbinado.Environment.Types</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Turbinado-Environment-ViewData.html"
+>Turbinado.Environment.ViewData</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.Files</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-Files.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-Files.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.Files</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetFile"
+>getFile</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m (Maybe MIMEValue)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetFile_u"
+>getFile_u</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m MIMEValue</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetFileContent"
+>getFileContent</A
+> :: MIMEValue -&gt; String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetFileDecode"
+>getFileDecode</A
+> :: MIMEValue -&gt; String</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getFile"
+><A NAME="v%3AgetFile"
+></A
+></A
+><B
+>getFile</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m (Maybe MIMEValue)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Files.html#getFile"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Attempt to get a File from the POST
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getFile_u"
+><A NAME="v%3AgetFile_u"
+></A
+></A
+><B
+>getFile_u</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m MIMEValue</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Files.html#getFile_u"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>An unsafe version of getFile.  Errors if the key does not exist.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getFileContent"
+><A NAME="v%3AgetFileContent"
+></A
+></A
+><B
+>getFileContent</B
+> :: MIMEValue -&gt; String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Files.html#getFileContent"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getFileDecode"
+><A NAME="v%3AgetFileDecode"
+></A
+></A
+><B
+>getFileDecode</B
+> :: MIMEValue -&gt; String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Files.html#getFileDecode"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

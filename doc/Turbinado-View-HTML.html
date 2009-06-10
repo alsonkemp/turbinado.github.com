@@ -1,0 +1,857 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.View.HTML</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-View-HTML.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-View-HTML.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.View.HTML</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Html primitives and basic combinators
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AVHtml"
+>VHtml</A
+> = <A HREF="Turbinado-View-Monad.html#t%3AView"
+>View</A
+> Html</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AVHTML"
+>VHTML</A
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoVHtml"
+>toVHtml</A
+> :: a -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoVHtmlFromList"
+>toVHtmlFromList</A
+> :: [a] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AADDATTRS"
+>ADDATTRS</A
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%21"
+>(!)</A
+> :: a -&gt; [HtmlAttr] -&gt; a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%3C%3C"
+>(&lt;&lt;)</A
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a =&gt; (<A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+> -&gt; b) -&gt; a -&gt; b</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AconcatVHtml"
+>concatVHtml</A
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a =&gt; [a] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A%2B%2B%2B"
+>(+++)</A
+> :: (<A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a, <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> b) =&gt; a -&gt; b -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnoVHtml"
+>noVHtml</A
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atag"
+>tag</A
+> :: String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+> -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aitag"
+>itag</A
+> :: String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstringToVHtml"
+>stringToVHtml</A
+> :: String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:VHtml"
+><A NAME="t%3AVHtml"
+></A
+></A
+><B
+>VHtml</B
+> = <A HREF="Turbinado-View-Monad.html#t%3AView"
+>View</A
+> Html</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#VHtml"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:VHTML"
+><A NAME="t%3AVHTML"
+></A
+></A
+><B
+>VHTML</B
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#VHTML"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:toVHtml"
+><A NAME="v%3AtoVHtml"
+></A
+></A
+><B
+>toVHtml</B
+> :: a -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#toVHtml"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:toVHtmlFromList"
+><A NAME="v%3AtoVHtmlFromList"
+></A
+></A
+><B
+>toVHtmlFromList</B
+> :: [a] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#toVHtmlFromList"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:VHTML')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:VHTML" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> Char</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> Html</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a =&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> ([] a)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a =&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> (Maybe a)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:ADDATTRS"
+><A NAME="t%3AADDATTRS"
+></A
+></A
+><B
+>ADDATTRS</B
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#ADDATTRS"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:!"
+><A NAME="v%3A%21"
+></A
+></A
+><B
+>(!)</B
+> :: a -&gt; [HtmlAttr] -&gt; a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#%21"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ADDATTRS')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ADDATTRS" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AADDATTRS"
+>ADDATTRS</A
+> <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-View-HTML.html#t%3AADDATTRS"
+>ADDATTRS</A
+> b =&gt; <A HREF="Turbinado-View-HTML.html#t%3AADDATTRS"
+>ADDATTRS</A
+> (a -&gt; b)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+><A NAME="1"
+>Html primitives and basic combinators
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:<<"
+><A NAME="v%3A%3C%3C"
+></A
+></A
+><B
+>(&lt;&lt;)</B
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#%3C%3C"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>=&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+> -&gt; b</TD
+><TD CLASS="rdoc"
+>Parent
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; a</TD
+><TD CLASS="rdoc"
+>Child
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; b</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Put something inside an HTML element.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:concatVHtml"
+><A NAME="v%3AconcatVHtml"
+></A
+></A
+><B
+>concatVHtml</B
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a =&gt; [a] -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#concatVHtml"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:+++"
+><A NAME="v%3A%2B%2B%2B"
+></A
+></A
+><B
+>(+++)</B
+> :: (<A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> a, <A HREF="Turbinado-View-HTML.html#t%3AVHTML"
+>VHTML</A
+> b) =&gt; a -&gt; b -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#%2B%2B%2B"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a piece of HTML which is the concatenation
+   of two things which can be made into HTML.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:noVHtml"
+><A NAME="v%3AnoVHtml"
+></A
+></A
+><B
+>noVHtml</B
+> :: <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#noVHtml"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>An empty piece of HTML.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:tag"
+><A NAME="v%3Atag"
+></A
+></A
+><B
+>tag</B
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#tag"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: String</TD
+><TD CLASS="rdoc"
+>Element name
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="rdoc"
+>Element contents
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Constructs an element with a custom name.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:itag"
+><A NAME="v%3Aitag"
+></A
+></A
+><B
+>itag</B
+> :: String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#itag"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Constructs an element with a custom name, and
+   without any children.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:stringToVHtml"
+><A NAME="v%3AstringToVHtml"
+></A
+></A
+><B
+>stringToVHtml</B
+> :: String -&gt; <A HREF="Turbinado-View-HTML.html#t%3AVHtml"
+>VHtml</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-View-HTML.html#stringToVHtml"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

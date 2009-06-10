@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Server.StandardResponse</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Server-StandardResponse.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Server.StandardResponse</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Alson Kemp (Alson@AlsonKemp.com)</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A set of functions to create standard HTTP responses.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:addEmptyResponse"
+><A NAME="v%3AaddEmptyResponse"
+></A
+></A
+><B
+>addEmptyResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#addEmptyResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:fileNotFoundResponse"
+><A NAME="v%3AfileNotFoundResponse"
+></A
+></A
+><B
+>fileNotFoundResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; FilePath -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#fileNotFoundResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:cachedContentResponse"
+><A NAME="v%3AcachedContentResponse"
+></A
+></A
+><B
+>cachedContentResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; Int -&gt; String -&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#cachedContentResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:pageResponse"
+><A NAME="v%3ApageResponse"
+></A
+></A
+><B
+>pageResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; [Header] -&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#pageResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:redirectResponse"
+><A NAME="v%3AredirectResponse"
+></A
+></A
+><B
+>redirectResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#redirectResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:errorResponse"
+><A NAME="v%3AerrorResponse"
+></A
+></A
+><B
+>errorResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#errorResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:badReqResponse"
+><A NAME="v%3AbadReqResponse"
+></A
+></A
+><B
+>badReqResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-StandardResponse.html#badReqResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

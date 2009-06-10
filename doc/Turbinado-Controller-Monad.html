@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Controller.Monad</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Controller-Monad.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Controller-Monad.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Controller.Monad</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>The <TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> Monad
+</A
+></DT
+><DT
+><A HREF="#2"
+>Functions
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AController"
+>Controller</A
+> = StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunController"
+>runController</A
+> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> () -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AwithController"
+>withController</A
+> ::  (<A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+>) -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>get</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>put</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>liftIO</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Acatch"
+>catch</A
+> ::  <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a -&gt; (<A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+> -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a) -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+><A NAME="1"
+>The <TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> Monad
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Controller"
+><A NAME="t%3AController"
+></A
+></A
+><B
+>Controller</B
+> = StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Controller-Monad.html#Controller"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The Controller monad is a state wrapper around
+ the IO monad.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:runController"
+><A NAME="v%3ArunController"
+></A
+></A
+><B
+>runController</B
+> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> () -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Controller-Monad.html#runController"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Runs a Controller computation in a particular environment. Since Controller wraps the IO monad,
+ the result of running it will be an IO computation.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:withController"
+><A NAME="v%3AwithController"
+></A
+></A
+><B
+>withController</B
+> ::  (<A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+>) -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Controller-Monad.html#withController"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>get</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>put</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+><A NAME="2"
+>Functions
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>liftIO</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:catch"
+><A NAME="v%3Acatch"
+></A
+></A
+><B
+>catch</B
+> ::  <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a -&gt; (<A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+> -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a) -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Controller-Monad.html#catch"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Catch a user-caused exception.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

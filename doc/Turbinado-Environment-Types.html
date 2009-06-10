@@ -1,0 +1,2856 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.Types</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-Types.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-Types.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.Types</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Types for CodeStore
+</A
+></DT
+><DT
+><A HREF="#2"
+>Types for Cookies
+</A
+></DT
+><DT
+><A HREF="#3"
+>Types for Files
+</A
+></DT
+><DT
+><A HREF="#4"
+>Types for Logger
+</A
+></DT
+><DT
+><A HREF="#5"
+>Types for MimeTypes
+</A
+></DT
+><DT
+><A HREF="#6"
+>Types for Files
+</A
+></DT
+><DT
+><A HREF="#7"
+>Types for Request
+</A
+></DT
+><DT
+><A HREF="#8"
+>Types for Response
+</A
+></DT
+><DT
+><A HREF="#9"
+>Types for Routes
+</A
+></DT
+><DT
+><A HREF="#10"
+>Types for Session
+</A
+></DT
+><DT
+><A HREF="#11"
+>Types for Settings
+</A
+></DT
+><DT
+><A HREF="#12"
+>Types for ViewData
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> MonadIO m =&gt; <A HREF="#t%3AHasEnvironment"
+>HasEnvironment</A
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetEnvironment"
+>getEnvironment</A
+> :: m <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetEnvironment"
+>setEnvironment</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AEnvironment"
+>Environment</A
+>  = <A HREF="#v%3AEnvironment"
+>Environment</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetCodeStore"
+>getCodeStore</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ACodeStore"
+>CodeStore</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetDatabase"
+>getDatabase</A
+> :: Maybe ConnWrapper</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetFiles"
+>getFiles</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AFiles"
+>Files</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetLoggerLock"
+>getLoggerLock</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ALoggerLock"
+>LoggerLock</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetMimeTypes"
+>getMimeTypes</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AMimeTypes"
+>MimeTypes</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetParams"
+>getParams</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AParams"
+>Params</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetRequest"
+>getRequest</A
+> :: Maybe (Request String)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetResponse"
+>getResponse</A
+> :: Maybe (Response String)</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetRoutes"
+>getRoutes</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ARoutes"
+>Routes</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetSession"
+>getSession</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetSettings"
+>getSettings</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ASettings"
+>Settings</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetViewData"
+>getViewData</A
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AViewData"
+>ViewData</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AgetAppEnvironment"
+>getAppEnvironment</A
+> :: Maybe (MVar Dynamic)</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnewEnvironment"
+>newEnvironment</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ACodeType"
+>CodeType</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ACTView"
+>CTView</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACTController"
+>CTController</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACTComponentView"
+>CTComponentView</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACTComponentController"
+>CTComponentController</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACTLayout"
+>CTLayout</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ACodeDate"
+>CodeDate</A
+> = UTCTime</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AFunction"
+>Function</A
+> = String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ACodeLocation"
+>CodeLocation</A
+> = (FilePath, <A HREF="Turbinado-Environment-Types.html#t%3AFunction"
+>Function</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ACodeStore"
+>CodeStore</A
+>  = <A HREF="#v%3ACodeStore"
+>CodeStore</A
+> (MVar <A HREF="Turbinado-Environment-Types.html#t%3ACodeMap"
+>CodeMap</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ACodeMap"
+>CodeMap</A
+> = Map <A HREF="Turbinado-Environment-Types.html#t%3ACodeLocation"
+>CodeLocation</A
+> <A HREF="Turbinado-Environment-Types.html#t%3ACodeStatus"
+>CodeStatus</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ACodeStatus"
+>CodeStatus</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ACodeLoadMissing"
+>CodeLoadMissing</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACodeLoadFailure"
+>CodeLoadFailure</A
+> String</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACodeLoadController"
+>CodeLoadController</A
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO ()) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACodeLoadView"
+>CodeLoadView</A
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO Html) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACodeLoadComponentController"
+>CodeLoadComponentController</A
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO ()) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACodeLoadComponentView"
+>CodeLoadComponentView</A
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO Html) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ACookie"
+>Cookie</A
+>  = <A HREF="#v%3ACookie"
+>Cookie</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AcookieName"
+>cookieName</A
+> :: String</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AcookieValue"
+>cookieValue</A
+> :: String</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AcookieExpires"
+>cookieExpires</A
+> :: Maybe UTCTime</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AcookieDomain"
+>cookieDomain</A
+> :: Maybe String</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AcookiePath"
+>cookiePath</A
+> :: Maybe String</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AFiles"
+>Files</A
+>  = <A HREF="#v%3AFiles"
+>Files</A
+> (Map String MIMEValue)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ALoggerLock"
+>LoggerLock</A
+> = MVar ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AMimeTypes"
+>MimeTypes</A
+>  = <A HREF="#v%3AMimeTypes"
+>MimeTypes</A
+> (Map String <A HREF="Turbinado-Environment-Types.html#t%3AMimeType"
+>MimeType</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AMimeType"
+>MimeType</A
+>  = <A HREF="#v%3AMimeType"
+>MimeType</A
+> String String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AParams"
+>Params</A
+>  = <A HREF="#v%3AParams"
+>Params</A
+> (Map String String)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AKeys"
+>Keys</A
+> = [String]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ARoutes"
+>Routes</A
+>  = <A HREF="#v%3ARoutes"
+>Routes</A
+> [(Regex, <A HREF="Turbinado-Environment-Types.html#t%3AKeys"
+>Keys</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ASession"
+>Session</A
+>  = <A HREF="#v%3ASession"
+>Session</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AsessionName"
+>sessionName</A
+> :: Maybe String</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AsessionId"
+>sessionId</A
+> :: Maybe Int</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aexpires"
+>expires</A
+> :: Maybe UTCTime</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AdataRep"
+>dataRep</A
+> :: Map String String</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AHasSession"
+>HasSession</A
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnewSession"
+>newSession</A
+> :: [(String, String)] -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AretrieveSession"
+>retrieveSession</A
+> :: [(String, String)] -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApersistSession"
+>persistSession</A
+> :: [(String, String)] -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhasValidSession"
+>hasValidSession</A
+> :: m Bool</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AabandonSession"
+>abandonSession</A
+> :: m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSessionValue"
+>getSessionValue</A
+> :: String -&gt; m (Maybe String)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetSessionValue"
+>setSessionValue</A
+> :: String -&gt; String -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteSessionKey"
+>deleteSessionKey</A
+> :: String -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSessionId"
+>getSessionId</A
+> :: m (Maybe Int)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetSessionId"
+>setSessionId</A
+> :: Maybe Int -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSessionExpires"
+>getSessionExpires</A
+> :: m (Maybe UTCTime)</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetSessionExpires"
+>setSessionExpires</A
+> :: Maybe UTCTime -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ASettings"
+>Settings</A
+> = Map String Dynamic</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AViewData"
+>ViewData</A
+> = Map String Dynamic</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>class</SPAN
+> MonadIO m =&gt; <A NAME="t:HasEnvironment"
+><A NAME="t%3AHasEnvironment"
+></A
+></A
+><B
+>HasEnvironment</B
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#HasEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>The class of types which hold an <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+>.
+ View and Controller are both instances of this class.
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getEnvironment"
+><A NAME="v%3AgetEnvironment"
+></A
+></A
+><B
+>getEnvironment</B
+> :: m <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#getEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setEnvironment"
+><A NAME="v%3AsetEnvironment"
+></A
+></A
+><B
+>setEnvironment</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#setEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:HasEnvironment')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:HasEnvironment" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO)</TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Environment"
+><A NAME="t%3AEnvironment"
+></A
+></A
+><B
+>Environment</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Environment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>The Environment in which each request is handled.
+ All components are held within <TT
+>Maybe</TT
+>s so that the
+ Environment can be partially constructed.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Environment"
+><A NAME="v%3AEnvironment"
+></A
+></A
+><B
+>Environment</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:getCodeStore"
+><A NAME="v%3AgetCodeStore"
+></A
+></A
+><B
+>getCodeStore</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ACodeStore"
+>CodeStore</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getDatabase"
+><A NAME="v%3AgetDatabase"
+></A
+></A
+><B
+>getDatabase</B
+> :: Maybe ConnWrapper</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getFiles"
+><A NAME="v%3AgetFiles"
+></A
+></A
+><B
+>getFiles</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AFiles"
+>Files</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getLoggerLock"
+><A NAME="v%3AgetLoggerLock"
+></A
+></A
+><B
+>getLoggerLock</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ALoggerLock"
+>LoggerLock</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getMimeTypes"
+><A NAME="v%3AgetMimeTypes"
+></A
+></A
+><B
+>getMimeTypes</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AMimeTypes"
+>MimeTypes</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getParams"
+><A NAME="v%3AgetParams"
+></A
+></A
+><B
+>getParams</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AParams"
+>Params</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getRequest"
+><A NAME="v%3AgetRequest"
+></A
+></A
+><B
+>getRequest</B
+> :: Maybe (Request String)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getResponse"
+><A NAME="v%3AgetResponse"
+></A
+></A
+><B
+>getResponse</B
+> :: Maybe (Response String)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getRoutes"
+><A NAME="v%3AgetRoutes"
+></A
+></A
+><B
+>getRoutes</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ARoutes"
+>Routes</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getSession"
+><A NAME="v%3AgetSession"
+></A
+></A
+><B
+>getSession</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getSettings"
+><A NAME="v%3AgetSettings"
+></A
+></A
+><B
+>getSettings</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3ASettings"
+>Settings</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getViewData"
+><A NAME="v%3AgetViewData"
+></A
+></A
+><B
+>getViewData</B
+> :: Maybe <A HREF="Turbinado-Environment-Types.html#t%3AViewData"
+>ViewData</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:getAppEnvironment"
+><A NAME="v%3AgetAppEnvironment"
+></A
+></A
+><B
+>getAppEnvironment</B
+> :: Maybe (MVar Dynamic)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:newEnvironment"
+><A NAME="v%3AnewEnvironment"
+></A
+></A
+><B
+>newEnvironment</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#newEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Construct a new empty <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+><A NAME="1"
+>Types for CodeStore
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:CodeType"
+><A NAME="t%3ACodeType"
+></A
+></A
+><B
+>CodeType</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeType"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:CTView"
+><A NAME="v%3ACTView"
+></A
+></A
+><B
+>CTView</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CTController"
+><A NAME="v%3ACTController"
+></A
+></A
+><B
+>CTController</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CTComponentView"
+><A NAME="v%3ACTComponentView"
+></A
+></A
+><B
+>CTComponentView</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CTComponentController"
+><A NAME="v%3ACTComponentController"
+></A
+></A
+><B
+>CTComponentController</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CTLayout"
+><A NAME="v%3ACTLayout"
+></A
+></A
+><B
+>CTLayout</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:CodeType')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:CodeType" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Environment-Types.html#t%3ACodeType"
+>CodeType</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:CodeDate"
+><A NAME="t%3ACodeDate"
+></A
+></A
+><B
+>CodeDate</B
+> = UTCTime</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeDate"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Function"
+><A NAME="t%3AFunction"
+></A
+></A
+><B
+>Function</B
+> = String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Function"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:CodeLocation"
+><A NAME="t%3ACodeLocation"
+></A
+></A
+><B
+>CodeLocation</B
+> = (FilePath, <A HREF="Turbinado-Environment-Types.html#t%3AFunction"
+>Function</A
+>)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeLocation"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:CodeStore"
+><A NAME="t%3ACodeStore"
+></A
+></A
+><B
+>CodeStore</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeStore"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeStore"
+><A NAME="v%3ACodeStore"
+></A
+></A
+><B
+>CodeStore</B
+> (MVar <A HREF="Turbinado-Environment-Types.html#t%3ACodeMap"
+>CodeMap</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:CodeMap"
+><A NAME="t%3ACodeMap"
+></A
+></A
+><B
+>CodeMap</B
+> = Map <A HREF="Turbinado-Environment-Types.html#t%3ACodeLocation"
+>CodeLocation</A
+> <A HREF="Turbinado-Environment-Types.html#t%3ACodeStatus"
+>CodeStatus</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeMap"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:CodeStatus"
+><A NAME="t%3ACodeStatus"
+></A
+></A
+><B
+>CodeStatus</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#CodeStatus"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadMissing"
+><A NAME="v%3ACodeLoadMissing"
+></A
+></A
+><B
+>CodeLoadMissing</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadFailure"
+><A NAME="v%3ACodeLoadFailure"
+></A
+></A
+><B
+>CodeLoadFailure</B
+> String</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadController"
+><A NAME="v%3ACodeLoadController"
+></A
+></A
+><B
+>CodeLoadController</B
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO ()) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadView"
+><A NAME="v%3ACodeLoadView"
+></A
+></A
+><B
+>CodeLoadView</B
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO Html) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadComponentController"
+><A NAME="v%3ACodeLoadComponentController"
+></A
+></A
+><B
+>CodeLoadComponentController</B
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO ()) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:CodeLoadComponentView"
+><A NAME="v%3ACodeLoadComponentView"
+></A
+></A
+><B
+>CodeLoadComponentView</B
+> (StateT <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> IO Html) <A HREF="Turbinado-Environment-Types.html#t%3ACodeDate"
+>CodeDate</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+><A NAME="2"
+>Types for Cookies
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Cookie"
+><A NAME="t%3ACookie"
+></A
+></A
+><B
+>Cookie</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Cookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Contains all information about a cookie set by the server.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Cookie"
+><A NAME="v%3ACookie"
+></A
+></A
+><B
+>Cookie</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieName"
+><A NAME="v%3AcookieName"
+></A
+></A
+><B
+>cookieName</B
+> :: String</TD
+><TD CLASS="rdoc"
+>Name of the cookie.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieValue"
+><A NAME="v%3AcookieValue"
+></A
+></A
+><B
+>cookieValue</B
+> :: String</TD
+><TD CLASS="rdoc"
+>Value of the cookie.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieExpires"
+><A NAME="v%3AcookieExpires"
+></A
+></A
+><B
+>cookieExpires</B
+> :: Maybe UTCTime</TD
+><TD CLASS="rdoc"
+>Expiry date of the cookie. If <TT
+>Nothing</TT
+>, the
+   cookie expires when the browser sessions ends.
+   If the date is in the past, the client should
+   delete the cookie immediately.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieDomain"
+><A NAME="v%3AcookieDomain"
+></A
+></A
+><B
+>cookieDomain</B
+> :: Maybe String</TD
+><TD CLASS="rdoc"
+>The domain suffix to which this cookie will be sent.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookiePath"
+><A NAME="v%3AcookiePath"
+></A
+></A
+><B
+>cookiePath</B
+> :: Maybe String</TD
+><TD CLASS="rdoc"
+>The path to which this cookie will be sent.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Cookie')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Cookie" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Ord <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="3"
+><A NAME="3"
+>Types for Files
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Files"
+><A NAME="t%3AFiles"
+></A
+></A
+><B
+>Files</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Files"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Files"
+><A NAME="v%3AFiles"
+></A
+></A
+><B
+>Files</B
+> (Map String MIMEValue)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="4"
+><A NAME="4"
+>Types for Logger
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:LoggerLock"
+><A NAME="t%3ALoggerLock"
+></A
+></A
+><B
+>LoggerLock</B
+> = MVar ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#LoggerLock"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="5"
+><A NAME="5"
+>Types for MimeTypes
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:MimeTypes"
+><A NAME="t%3AMimeTypes"
+></A
+></A
+><B
+>MimeTypes</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#MimeTypes"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:MimeTypes"
+><A NAME="v%3AMimeTypes"
+></A
+></A
+><B
+>MimeTypes</B
+> (Map String <A HREF="Turbinado-Environment-Types.html#t%3AMimeType"
+>MimeType</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:MimeType"
+><A NAME="t%3AMimeType"
+></A
+></A
+><B
+>MimeType</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#MimeType"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:MimeType"
+><A NAME="v%3AMimeType"
+></A
+></A
+><B
+>MimeType</B
+> String String</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:MimeType')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:MimeType" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Environment-Types.html#t%3AMimeType"
+>MimeType</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="6"
+><A NAME="6"
+>Types for Files
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Params"
+><A NAME="t%3AParams"
+></A
+></A
+><B
+>Params</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Params"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Params"
+><A NAME="v%3AParams"
+></A
+></A
+><B
+>Params</B
+> (Map String String)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="7"
+><A NAME="7"
+>Types for Request
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="8"
+><A NAME="8"
+>Types for Response
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="9"
+><A NAME="9"
+>Types for Routes
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Keys"
+><A NAME="t%3AKeys"
+></A
+></A
+><B
+>Keys</B
+> = [String]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Keys"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Routes"
+><A NAME="t%3ARoutes"
+></A
+></A
+><B
+>Routes</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Routes"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Routes"
+><A NAME="v%3ARoutes"
+></A
+></A
+><B
+>Routes</B
+> [(Regex, <A HREF="Turbinado-Environment-Types.html#t%3AKeys"
+>Keys</A
+>)]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="10"
+><A NAME="10"
+>Types for Session
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Session"
+><A NAME="t%3ASession"
+></A
+></A
+><B
+>Session</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Session"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Session"
+><A NAME="v%3ASession"
+></A
+></A
+><B
+>Session</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:sessionName"
+><A NAME="v%3AsessionName"
+></A
+></A
+><B
+>sessionName</B
+> :: Maybe String</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:sessionId"
+><A NAME="v%3AsessionId"
+></A
+></A
+><B
+>sessionId</B
+> :: Maybe Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:expires"
+><A NAME="v%3Aexpires"
+></A
+></A
+><B
+>expires</B
+> :: Maybe UTCTime</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:dataRep"
+><A NAME="v%3AdataRep"
+></A
+></A
+><B
+>dataRep</B
+> :: Map String String</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Session')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Session" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:HasSession"
+><A NAME="t%3AHasSession"
+></A
+></A
+><B
+>HasSession</B
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#HasSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:newSession"
+><A NAME="v%3AnewSession"
+></A
+></A
+><B
+>newSession</B
+> :: [(String, String)] -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#newSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:retrieveSession"
+><A NAME="v%3AretrieveSession"
+></A
+></A
+><B
+>retrieveSession</B
+> :: [(String, String)] -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#retrieveSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:persistSession"
+><A NAME="v%3ApersistSession"
+></A
+></A
+><B
+>persistSession</B
+> :: [(String, String)] -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#persistSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:hasValidSession"
+><A NAME="v%3AhasValidSession"
+></A
+></A
+><B
+>hasValidSession</B
+> :: m Bool</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#hasValidSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:abandonSession"
+><A NAME="v%3AabandonSession"
+></A
+></A
+><B
+>abandonSession</B
+> :: m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#abandonSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getSessionValue"
+><A NAME="v%3AgetSessionValue"
+></A
+></A
+><B
+>getSessionValue</B
+> :: String -&gt; m (Maybe String)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#getSessionValue"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setSessionValue"
+><A NAME="v%3AsetSessionValue"
+></A
+></A
+><B
+>setSessionValue</B
+> :: String -&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#setSessionValue"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:deleteSessionKey"
+><A NAME="v%3AdeleteSessionKey"
+></A
+></A
+><B
+>deleteSessionKey</B
+> :: String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#deleteSessionKey"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getSessionId"
+><A NAME="v%3AgetSessionId"
+></A
+></A
+><B
+>getSessionId</B
+> :: m (Maybe Int)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#getSessionId"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setSessionId"
+><A NAME="v%3AsetSessionId"
+></A
+></A
+><B
+>setSessionId</B
+> :: Maybe Int -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#setSessionId"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getSessionExpires"
+><A NAME="v%3AgetSessionExpires"
+></A
+></A
+><B
+>getSessionExpires</B
+> :: m (Maybe UTCTime)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#getSessionExpires"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setSessionExpires"
+><A NAME="v%3AsetSessionExpires"
+></A
+></A
+><B
+>setSessionExpires</B
+> :: Maybe UTCTime -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#setSessionExpires"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="11"
+><A NAME="11"
+>Types for Settings
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Settings"
+><A NAME="t%3ASettings"
+></A
+></A
+><B
+>Settings</B
+> = Map String Dynamic</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#Settings"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="12"
+><A NAME="12"
+>Types for ViewData
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:ViewData"
+><A NAME="t%3AViewData"
+></A
+></A
+><B
+>ViewData</B
+> = Map String Dynamic</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Types.html#ViewData"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

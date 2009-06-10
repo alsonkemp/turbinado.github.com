@@ -4,12 +4,12 @@
 ><HEAD
 ><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
 ><TITLE
->Turbinado.Server.RequestProcess</TITLE
+>Turbinado.Controller.Exception</TITLE
 ><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
 ><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
 ></SCRIPT
 ><SCRIPT TYPE="text/javascript"
->window.onload = function () {setSynopsis("mini_Turbinado-Server-RequestProcess.html")};</SCRIPT
+>window.onload = function () {setSynopsis("mini_Turbinado-Controller-Exception.html")};</SCRIPT
 ></HEAD
 ><BODY
 ><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
@@ -23,7 +23,7 @@
 ><TD CLASS="title"
 >turbinado-0.7: Haskell web application server</TD
 ><TD CLASS="topbut"
-><A HREF="src/Turbinado-Server-RequestProcess.html"
+><A HREF="src/Turbinado-Controller-Exception.html"
 >Source code</A
 ></TD
 ><TD CLASS="topbut"
@@ -44,16 +44,10 @@
 ><TR
 ><TD
 ><FONT SIZE="6"
->Turbinado.Server.RequestProcess</FONT
+>Turbinado.Controller.Exception</FONT
 ></TD
 ><TD ALIGN="right"
 ><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
-><TR
-><TD CLASS="infohead"
->Portability</TD
-><TD CLASS="infoval"
->portable</TD
-></TR
 ><TR
 ><TD CLASS="infohead"
 >Stability</TD
@@ -64,7 +58,7 @@
 ><TD CLASS="infohead"
 >Maintainer</TD
 ><TD CLASS="infoval"
->Alson Kemp, Alson@AlsonKemp.com</TD
+>Alson Kemp (alson@alsonkemp.com)</TD
 ></TR
 ></TABLE
 ></TD
@@ -82,34 +76,10 @@
 ></TR
 ><TR
 ><TD CLASS="doc"
->A utility for the server that handles a recieved request, producing
- a response.
-</TD
-></TR
-><TR
-><TD CLASS="s15"
 ></TD
 ></TR
 ><TR
-><TD CLASS="section1"
->Synopsis</TD
-></TR
-><TR
 ><TD CLASS="s15"
-></TD
-></TR
-><TR
-><TD CLASS="body"
-><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
-><TR
-><TD CLASS="decl"
-><A HREF="#v%3AprocessRequest"
->processRequest</A
-> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
->Controller</A
-> ()</TD
-></TR
-></TABLE
 ></TD
 ></TR
 ><TR
@@ -129,17 +99,17 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:processRequest"
-><A NAME="v%3AprocessRequest"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Exception"
+><A NAME="t%3AException"
 ></A
 ></A
 ><B
->processRequest</B
-> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
->Controller</A
-> ()</TD
+>Exception</B
+>  </TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-RequestProcess.html#processRequest"
+><A HREF="src/Turbinado-Controller-Exception.html#Exception"
 >Source</A
 ></TD
 ></TR
@@ -147,10 +117,92 @@
 ></TD
 ></TR
 ><TR
-><TD CLASS="doc"
->The main request handler.  This runs standard and custom preFilters
- then runs the Controller and View.
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:ParameterLookupFailed"
+><A NAME="v%3AParameterLookupFailed"
+></A
+></A
+><B
+>ParameterLookupFailed</B
+> String</TD
+><TD CLASS="rdoc"
+>User tried to do an irrefutable parameter lookup
+ that failed.
+ | ... I'm sure there should be more exceptions, we'll add them when we get to them.
 </TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Exception')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Exception" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Typeable <A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:throwController"
+><A NAME="v%3AthrowController"
+></A
+></A
+><B
+>throwController</B
+> ::  <A HREF="Turbinado-Controller-Exception.html#t%3AException"
+>Exception</A
+> -&gt; a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Controller-Exception.html#throwController"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
 ></TR
 ><TR
 ><TD CLASS="s15"

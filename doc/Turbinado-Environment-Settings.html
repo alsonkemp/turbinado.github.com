@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.Settings</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-Settings.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-Settings.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.Settings</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaddSettingsToEnvironment"
+>addSettingsToEnvironment</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSetting"
+>getSetting</A
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m (Maybe a)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetSetting_u"
+>getSetting_u</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetSetting"
+>setSetting</A
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; a -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetController"
+>getController</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m (FilePath, String)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AclearLayout"
+>clearLayout</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetLayout"
+>setLayout</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetView"
+>getView</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m (FilePath, String)</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:addSettingsToEnvironment"
+><A NAME="v%3AaddSettingsToEnvironment"
+></A
+></A
+><B
+>addSettingsToEnvironment</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#addSettingsToEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Used during request initialization to add the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3ASettings"
+>Settings</A
+></TT
+> Map
+ to the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getSetting"
+><A NAME="v%3AgetSetting"
+></A
+></A
+><B
+>getSetting</B
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m (Maybe a)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#getSetting"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Attempts to pull a dynamically typed value out of the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3ASettings"
+>Settings</A
+></TT
+> Map.
+ Returns <TT
+>Maybe a</TT
+> where <TT
+>a</TT
+> is the type inferred from usage.
+</P
+><P
+>IMPORTANT: This function will return Nothing if the type inferred does not match
+ the type in the Map.  So if <TT
+>1 :: Int</TT
+> is stored with a key <A HREF="number.html"
+>number</A
+>,
+ then <TT
+>getSetting <A HREF="number.html"
+>number</A
+> :: <TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> Integer</TT
+> will return <TT
+><TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> Nothing</TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getSetting_u"
+><A NAME="v%3AgetSetting_u"
+></A
+></A
+><B
+>getSetting_u</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#getSetting_u"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This function is an <A HREF="unsafe.html"
+>unsafe</A
+> version of <TT
+><A HREF="Turbinado-Environment-Settings.html#v%3AgetSetting"
+>getSetting</A
+></TT
+> in that this function assumes that the key
+ *does* exist in the map.  If no key exists or if the value type does not match the inferred
+ type, this function will throw an error.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setSetting"
+><A NAME="v%3AsetSetting"
+></A
+></A
+><B
+>setSetting</B
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; a -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#setSetting"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Sets a key/value pair in the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3ASettings"
+>Settings</A
+></TT
+> map.  
+</P
+><P
+>IMPORTANT: the value must be
+ Typeable.  If you cannot use a Typeable (e.g. you're using a type
+ from a library), then you can extract Typeable fields from your value
+ and set those or you can convert your type to a Typeable type (e.g. using
+ <TT
+>show</TT
+> to convert to a String). 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getController"
+><A NAME="v%3AgetController"
+></A
+></A
+><B
+>getController</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m (FilePath, String)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#getController"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Returns the Controller FilePath and action/function name.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:clearLayout"
+><A NAME="v%3AclearLayout"
+></A
+></A
+><B
+>clearLayout</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#clearLayout"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Tells the <TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> not to use a Layout for the View.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setLayout"
+><A NAME="v%3AsetLayout"
+></A
+></A
+><B
+>setLayout</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#setLayout"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Tells the <TT
+><A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+></TT
+> to use a particular Layout for the View.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getView"
+><A NAME="v%3AgetView"
+></A
+></A
+><B
+>getView</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m (FilePath, String)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Settings.html#getView"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Helper function used by the request handler.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,967 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Server</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Server.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Server.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Server</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AFlag"
+>Flag</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3APort"
+>Port</A
+> Integer</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AUseCGI"
+>UseCGI</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AHelp"
+>Help</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aoptions"
+>options</A
+> :: [OptDescr <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Amain"
+>main</A
+> :: IO ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ArunAsCGIPort"
+>runAsCGIPort</A
+> :: PortNumber</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstartServer"
+>startServer</A
+> :: PortNumber -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AworkerLoop"
+>workerLoop</A
+> :: Maybe (MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+>) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; Maybe (Chan Socket) -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AworkerProcessRequest"
+>workerProcessRequest</A
+> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AWorkerPool"
+>WorkerPool</A
+>  = <A HREF="#v%3AWorkerPool"
+>WorkerPool</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AnumWorkers"
+>numWorkers</A
+> :: Int</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AidleWorkers"
+>idleWorkers</A
+> :: [<A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+>]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AbusyWorkers"
+>busyWorkers</A
+> :: [(<A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+>, <A HREF="Turbinado-Server.html#t%3AExpiresTime"
+>ExpiresTime</A
+>)]</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AWorkerThread"
+>WorkerThread</A
+>  = <A HREF="#v%3AWorkerThread"
+>WorkerThread</A
+> ThreadId (Chan Socket)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AExpiresTime"
+>ExpiresTime</A
+> = UTCTime</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetWorkerThread"
+>getWorkerThread</A
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO <A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AputWorkerThread"
+>putWorkerThread</A
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+> -&gt; Chan Socket -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstdTimeOut"
+>stdTimeOut</A
+> :: Integer</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Flag"
+><A NAME="t%3AFlag"
+></A
+></A
+><B
+>Flag</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#Flag"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Port"
+><A NAME="v%3APort"
+></A
+></A
+><B
+>Port</B
+> Integer</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:UseCGI"
+><A NAME="v%3AUseCGI"
+></A
+></A
+><B
+>UseCGI</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:Help"
+><A NAME="v%3AHelp"
+></A
+></A
+><B
+>Help</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Flag')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Flag" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:options"
+><A NAME="v%3Aoptions"
+></A
+></A
+><B
+>options</B
+> :: [OptDescr <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+>]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#options"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:main"
+><A NAME="v%3Amain"
+></A
+></A
+><B
+>main</B
+> :: IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#main"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Handle a few options, then kick off the server.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:runAsCGIPort"
+><A NAME="v%3ArunAsCGIPort"
+></A
+></A
+><B
+>runAsCGIPort</B
+> :: PortNumber</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#runAsCGIPort"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:startServer"
+><A NAME="v%3AstartServer"
+></A
+></A
+><B
+>startServer</B
+> :: PortNumber -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#startServer"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Starts the server, builds the basic <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+>, builds the <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+></TT
+>,
+ starts listening on the specified port.  As soon as a request is noticed, 
+ it's handed off to a <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+> to be handled.  Lather, Rinse, Repeat.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:workerLoop"
+><A NAME="v%3AworkerLoop"
+></A
+></A
+><B
+>workerLoop</B
+> :: Maybe (MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+>) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; Maybe (Chan Socket) -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#workerLoop"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Worker stuff
+</P
+><P
+>The basic loop for a <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+>: get the socket from the server mainloop,
+ receive a request, handle it, then put myself back into the <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:workerProcessRequest"
+><A NAME="v%3AworkerProcessRequest"
+></A
+></A
+><B
+>workerProcessRequest</B
+> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#workerProcessRequest"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Basic request handling: setup the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+> for this request,
+ run the real requestHandler, then ship the response back to the client.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:WorkerPool"
+><A NAME="t%3AWorkerPool"
+></A
+></A
+><B
+>WorkerPool</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#WorkerPool"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+><P
+>Worker Pool stuff
+</P
+><P
+>The <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+></TT
+> holds each idle or busy <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+>.
+ When all <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+>s are busy, more are created by
+ <TT
+><A HREF="Turbinado-Server.html#v%3AgetWorkerThread"
+>getWorkerThread</A
+></TT
+> and added to the <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+></TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:WorkerPool"
+><A NAME="v%3AWorkerPool"
+></A
+></A
+><B
+>WorkerPool</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:numWorkers"
+><A NAME="v%3AnumWorkers"
+></A
+></A
+><B
+>numWorkers</B
+> :: Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:idleWorkers"
+><A NAME="v%3AidleWorkers"
+></A
+></A
+><B
+>idleWorkers</B
+> :: [<A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:busyWorkers"
+><A NAME="v%3AbusyWorkers"
+></A
+></A
+><B
+>busyWorkers</B
+> :: [(<A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+>, <A HREF="Turbinado-Server.html#t%3AExpiresTime"
+>ExpiresTime</A
+>)]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:WorkerThread"
+><A NAME="t%3AWorkerThread"
+></A
+></A
+><B
+>WorkerThread</B
+>  </TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#WorkerThread"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Each <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+> has a <TT
+>ThreadId</TT
+> and a Channel for communication.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:WorkerThread"
+><A NAME="v%3AWorkerThread"
+></A
+></A
+><B
+>WorkerThread</B
+> ThreadId (Chan Socket)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:ExpiresTime"
+><A NAME="t%3AExpiresTime"
+></A
+></A
+><B
+>ExpiresTime</B
+> = UTCTime</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#ExpiresTime"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="Turbinado-Server.html#t%3AExpiresTime"
+>ExpiresTime</A
+></TT
+> is the time at which a <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+> will be killed if it
+ has not completed its <TT
+>Request</TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getWorkerThread"
+><A NAME="v%3AgetWorkerThread"
+></A
+></A
+><B
+>getWorkerThread</B
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO <A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#getWorkerThread"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="Turbinado-Server.html#v%3AgetWorkerThread"
+>getWorkerThread</A
+></TT
+> returns a <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+>.  If all threads are busy,
+ a new WorkerThread is created and returned.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:putWorkerThread"
+><A NAME="v%3AputWorkerThread"
+></A
+></A
+><B
+>putWorkerThread</B
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+> -&gt; Chan Socket -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#putWorkerThread"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><TT
+><A HREF="Turbinado-Server.html#v%3AputWorkerThread"
+>putWorkerThread</A
+></TT
+> puts a <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerThread"
+>WorkerThread</A
+></TT
+> back into the <TT
+><A HREF="Turbinado-Server.html#t%3AWorkerPool"
+>WorkerPool</A
+></TT
+>.  This function
+ is used by the thread to put *itself* back into the pool.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:stdTimeOut"
+><A NAME="v%3AstdTimeOut"
+></A
+></A
+><B
+>stdTimeOut</B
+> :: Integer</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#stdTimeOut"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

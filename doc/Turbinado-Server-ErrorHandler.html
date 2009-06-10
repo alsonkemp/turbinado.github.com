@@ -4,12 +4,12 @@
 ><HEAD
 ><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
 ><TITLE
->Turbinado.Server.RequestProcess</TITLE
+>Turbinado.Server.ErrorHandler</TITLE
 ><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
 ><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
 ></SCRIPT
 ><SCRIPT TYPE="text/javascript"
->window.onload = function () {setSynopsis("mini_Turbinado-Server-RequestProcess.html")};</SCRIPT
+>window.onload = function () {setSynopsis("mini_Turbinado-Server-ErrorHandler.html")};</SCRIPT
 ></HEAD
 ><BODY
 ><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
@@ -23,7 +23,7 @@
 ><TD CLASS="title"
 >turbinado-0.7: Haskell web application server</TD
 ><TD CLASS="topbut"
-><A HREF="src/Turbinado-Server-RequestProcess.html"
+><A HREF="src/Turbinado-Server-ErrorHandler.html"
 >Source code</A
 ></TD
 ><TD CLASS="topbut"
@@ -44,29 +44,7 @@
 ><TR
 ><TD
 ><FONT SIZE="6"
->Turbinado.Server.RequestProcess</FONT
-></TD
-><TD ALIGN="right"
-><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
-><TR
-><TD CLASS="infohead"
->Portability</TD
-><TD CLASS="infoval"
->portable</TD
-></TR
-><TR
-><TD CLASS="infohead"
->Stability</TD
-><TD CLASS="infoval"
->experimental</TD
-></TR
-><TR
-><TD CLASS="infohead"
->Maintainer</TD
-><TD CLASS="infoval"
->Alson Kemp, Alson@AlsonKemp.com</TD
-></TR
-></TABLE
+>Turbinado.Server.ErrorHandler</FONT
 ></TD
 ></TR
 ></TABLE
@@ -77,39 +55,7 @@
 ></TD
 ></TR
 ><TR
-><TD CLASS="section1"
->Description</TD
-></TR
-><TR
-><TD CLASS="doc"
->A utility for the server that handles a recieved request, producing
- a response.
-</TD
-></TR
-><TR
 ><TD CLASS="s15"
-></TD
-></TR
-><TR
-><TD CLASS="section1"
->Synopsis</TD
-></TR
-><TR
-><TD CLASS="s15"
-></TD
-></TR
-><TR
-><TD CLASS="body"
-><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
-><TR
-><TD CLASS="decl"
-><A HREF="#v%3AprocessRequest"
->processRequest</A
-> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
->Controller</A
-> ()</TD
-></TR
-></TABLE
 ></TD
 ></TR
 ><TR
@@ -129,17 +75,17 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:processRequest"
-><A NAME="v%3AprocessRequest"
+><A NAME="v:handleError"
+><A NAME="v%3AhandleError"
 ></A
 ></A
 ><B
->processRequest</B
-> :: <A HREF="Turbinado-Controller-Monad.html#t%3AController"
->Controller</A
-> ()</TD
+>handleError</B
+> :: Maybe Socket -&gt; Exception -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-RequestProcess.html#processRequest"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleError"
 >Source</A
 ></TD
 ></TR
@@ -147,10 +93,32 @@
 ></TD
 ></TR
 ><TR
-><TD CLASS="doc"
->The main request handler.  This runs standard and custom preFilters
- then runs the Controller and View.
-</TD
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:handleTurbinado"
+><A NAME="v%3AhandleTurbinado"
+></A
+></A
+><B
+>handleTurbinado</B
+> :: Maybe Socket -&gt; <A HREF="Turbinado-Server-Exception.html#t%3ATurbinadoException"
+>TurbinadoException</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleTurbinado"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
 ></TR
 ><TR
 ><TD CLASS="s15"

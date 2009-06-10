@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.Cookie</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-Cookie.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-Cookie.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.Cookie</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable
+
+  General server side HTTP cookie library.
+  Based on &lt;http://wp.netscape.com/newsref/std/cookie_spec.html&gt;
+  Lifted in near entirety from the CGI package (http://hackage.haskell.org/cgi-bin/hackage-scripts/package/cgi)</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>alson@alsonkemp.com</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmkCookie"
+>mkCookie</A
+> :: String -&gt; String -&gt; <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetCookie"
+>getCookie</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m (Maybe String)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetCookie"
+>setCookie</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+> -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteCookie"
+>deleteCookie</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; String -&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshowCookie"
+>showCookie</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+> -&gt; String</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:mkCookie"
+><A NAME="v%3AmkCookie"
+></A
+></A
+><B
+>mkCookie</B
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Cookie.html#mkCookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: String</TD
+><TD CLASS="rdoc"
+>Name
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; String</TD
+><TD CLASS="rdoc"
+>Value
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+></TD
+><TD CLASS="rdoc"
+>Cookie
+</TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Construct a cookie with only name and value set.
+   This client will expire when the browser sessions ends,
+   will only be sent to the server and path which set it
+   and may be sent using any means.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getCookie"
+><A NAME="v%3AgetCookie"
+></A
+></A
+><B
+>getCookie</B
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Cookie.html#getCookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>=&gt; String</TD
+><TD CLASS="rdoc"
+>Cookie name
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; m (Maybe String)</TD
+><TD CLASS="rdoc"
+>Cookie value, if found
+</TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Get the value of a cookie from a string on the form
+   <TT
+>&quot;cookieName1=cookieValue1;...;cookieName2=cookieValue2&quot;</TT
+>.
+   This is the format of the <TT
+>Cookie</TT
+> HTTP header.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setCookie"
+><A NAME="v%3AsetCookie"
+></A
+></A
+><B
+>setCookie</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+> -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Cookie.html#setCookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Set a cookie (which you should have created using something like <TT
+><A HREF="Turbinado-Environment-Cookie.html#v%3AmkCookie"
+>mkCookie</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:deleteCookie"
+><A NAME="v%3AdeleteCookie"
+></A
+></A
+><B
+>deleteCookie</B
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Cookie.html#deleteCookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>=&gt; String</TD
+><TD CLASS="rdoc"
+>Cookie to delete.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; m ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Delete a cookie from the client by setting the cookie expiry date
+   to a date in the past.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:showCookie"
+><A NAME="v%3AshowCookie"
+></A
+></A
+><B
+>showCookie</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3ACookie"
+>Cookie</A
+> -&gt; String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Cookie.html#showCookie"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Show a cookie in the format used as the value of the Set-Cookie header.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

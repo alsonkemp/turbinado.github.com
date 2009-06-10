@@ -1,0 +1,595 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.Session.CookieSession</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-Session-CookieSession.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.Session.CookieSession</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>requires undecidable and overlapping instances</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>Alson Kemp, alson@alsonkemp.com</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Helpers 
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Much of this code is lifted/derived from Niklas' HSP and from Michael's HWeb.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AKey"
+>Key</A
+> = String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AValue"
+>Value</A
+> = String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstringToW8"
+>stringToW8</A
+> :: String -&gt; [Word8]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aw128ToW8"
+>w128ToW8</A
+> :: Word128 -&gt; [Word8]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aw8ToString"
+>w8ToString</A
+> :: [Word8] -&gt; String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AblocksToString"
+>blocksToString</A
+> :: [[Word8]] -&gt; String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AblocksToW8"
+>blocksToW8</A
+> :: [Word128] -&gt; [Word8]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aw8ToKey"
+>w8ToKey</A
+> :: [Word8] -&gt; Word128</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aw8ToBlocks"
+>w8ToBlocks</A
+> :: [Word8] -&gt; [Word128]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmaybeReadUTC"
+>maybeReadUTC</A
+> :: String -&gt; Maybe UTCTime</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A_getSession"
+>_getSession</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3A_setSession"
+>_setSession</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+> -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Key"
+><A NAME="t%3AKey"
+></A
+></A
+><B
+>Key</B
+> = String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#Key"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Value"
+><A NAME="t%3AValue"
+></A
+></A
+><B
+>Value</B
+> = String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#Value"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+><A NAME="1"
+>Helpers 
+</A
+></A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:stringToW8"
+><A NAME="v%3AstringToW8"
+></A
+></A
+><B
+>stringToW8</B
+> :: String -&gt; [Word8]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#stringToW8"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:w128ToW8"
+><A NAME="v%3Aw128ToW8"
+></A
+></A
+><B
+>w128ToW8</B
+> :: Word128 -&gt; [Word8]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#w128ToW8"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:w8ToString"
+><A NAME="v%3Aw8ToString"
+></A
+></A
+><B
+>w8ToString</B
+> :: [Word8] -&gt; String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#w8ToString"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:blocksToString"
+><A NAME="v%3AblocksToString"
+></A
+></A
+><B
+>blocksToString</B
+> :: [[Word8]] -&gt; String</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#blocksToString"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:blocksToW8"
+><A NAME="v%3AblocksToW8"
+></A
+></A
+><B
+>blocksToW8</B
+> :: [Word128] -&gt; [Word8]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#blocksToW8"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:w8ToKey"
+><A NAME="v%3Aw8ToKey"
+></A
+></A
+><B
+>w8ToKey</B
+> :: [Word8] -&gt; Word128</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#w8ToKey"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:w8ToBlocks"
+><A NAME="v%3Aw8ToBlocks"
+></A
+></A
+><B
+>w8ToBlocks</B
+> :: [Word8] -&gt; [Word128]</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#w8ToBlocks"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:maybeReadUTC"
+><A NAME="v%3AmaybeReadUTC"
+></A
+></A
+><B
+>maybeReadUTC</B
+> :: String -&gt; Maybe UTCTime</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#maybeReadUTC"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:_getSession"
+><A NAME="v%3A_getSession"
+></A
+></A
+><B
+>_getSession</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+></TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#_getSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:_setSession"
+><A NAME="v%3A_setSession"
+></A
+></A
+><B
+>_setSession</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; <A HREF="Turbinado-Environment-Types.html#t%3ASession"
+>Session</A
+> -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-Session-CookieSession.html#_setSession"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

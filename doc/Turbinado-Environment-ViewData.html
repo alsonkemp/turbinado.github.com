@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Turbinado.Environment.ViewData</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Turbinado-Environment-ViewData.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>turbinado-0.7: Haskell web application server</TD
+><TD CLASS="topbut"
+><A HREF="src/Turbinado-Environment-ViewData.html"
+>Source code</A
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Turbinado.Environment.ViewData</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AaddViewDataToEnvironment"
+>addViewDataToEnvironment</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetViewDataValue"
+>getViewDataValue</A
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m (Maybe a)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetViewDataValue_u"
+>getViewDataValue_u</A
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetViewDataValue"
+>setViewDataValue</A
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; a -&gt; m ()</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:addViewDataToEnvironment"
+><A NAME="v%3AaddViewDataToEnvironment"
+></A
+></A
+><B
+>addViewDataToEnvironment</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m =&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-ViewData.html#addViewDataToEnvironment"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Used during request initialization to add the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AViewData"
+>ViewData</A
+></TT
+> 'Map
+ to the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getViewDataValue"
+><A NAME="v%3AgetViewDataValue"
+></A
+></A
+><B
+>getViewDataValue</B
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m (Maybe a)</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-ViewData.html#getViewDataValue"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Attempts to pull a dynamically typed value out of the 'ViewData Map.
+ Returns Maybe a where a is the type inferred from usage.
+</P
+><P
+>IMPORTANT: This function will return Nothing if the type inferred does not match
+ the type in the Map.  So if <TT
+>1 :: Int</TT
+> is stored in the Map with a key <A HREF="number.html"
+>number</A
+>,
+ then <TT
+>getViewDataValue <A HREF="number.html"
+>number</A
+> :: Controller Integer</TT
+> will return <TT
+>Controller Nothing</TT
+>.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:getViewDataValue_u"
+><A NAME="v%3AgetViewDataValue_u"
+></A
+></A
+><B
+>getViewDataValue_u</B
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; m a</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-ViewData.html#getViewDataValue_u"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>This function is an <A HREF="unsafe.html"
+>unsafe</A
+> version of <TT
+><A HREF="Turbinado-Environment-ViewData.html#v%3AgetViewDataValue"
+>getViewDataValue</A
+></TT
+> in that this function assumes that the key
+ *does* exist in the map.  If no key exists or if the value type does not match the inferred
+ type, this function will throw an error.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:setViewDataValue"
+><A NAME="v%3AsetViewDataValue"
+></A
+></A
+><B
+>setViewDataValue</B
+> :: (<A HREF="Turbinado-Environment-Types.html#t%3AHasEnvironment"
+>HasEnvironment</A
+> m, Typeable a) =&gt; String -&gt; a -&gt; m ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Environment-ViewData.html#setViewDataValue"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Sets a key/value pair in the <TT
+><A HREF="Turbinado-Environment-Types.html#t%3AViewData"
+>ViewData</A
+></TT
+> Map.  
+</P
+><P
+>IMPORTANT: the value must be
+ Typeable.  If you cannot use a Typeable (e.g. you're using a type
+ from a library), then you can extract Typeable fields from your value
+ and set those or you can convert your type to a Typeable type (e.g. using
+ <TT
+>show</TT
+> to convert to a String). 
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.4.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>
