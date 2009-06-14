@@ -71,9 +71,9 @@
 ><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
 ><TR
 ><TD CLASS="decl"
-><A HREF="#v%3AreceiveRequest"
->receiveRequest</A
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+><A HREF="#v%3AreceiveHTTPRequest"
+>receiveHTTPRequest</A
+> :: Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
 >Controller</A
 > ()</TD
 ></TR
@@ -83,11 +83,35 @@
 ></TR
 ><TR
 ><TD CLASS="decl"
-><A HREF="#v%3AsendResponse"
->sendResponse</A
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+><A HREF="#v%3AsendHTTPResponse"
+>sendHTTPResponse</A
+> :: Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AreceiveCGIRequest"
+>receiveCGIRequest</A
+> :: URI -&gt; String -&gt; String -&gt; [(String, String)] -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> ()</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsendCGIResponse"
+>sendCGIResponse</A
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
-> -&gt; IO ()</TD
+> -&gt; CGI CGIResult</TD
 ></TR
 ></TABLE
 ></TD
@@ -109,17 +133,17 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:receiveRequest"
-><A NAME="v%3AreceiveRequest"
+><A NAME="v:receiveHTTPRequest"
+><A NAME="v%3AreceiveHTTPRequest"
 ></A
 ></A
 ><B
->receiveRequest</B
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>receiveHTTPRequest</B
+> :: Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
 >Controller</A
 > ()</TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-Network.html#receiveRequest"
+><A HREF="src/Turbinado-Server-Network.html#receiveHTTPRequest"
 >Source</A
 ></TD
 ></TR
@@ -140,17 +164,17 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:sendResponse"
-><A NAME="v%3AsendResponse"
+><A NAME="v:sendHTTPResponse"
+><A NAME="v%3AsendHTTPResponse"
 ></A
 ></A
 ><B
->sendResponse</B
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
->Environment</A
-> -&gt; IO ()</TD
+>sendHTTPResponse</B
+> :: Socket -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> ()</TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-Network.html#sendResponse"
+><A HREF="src/Turbinado-Server-Network.html#sendHTTPResponse"
 >Source</A
 ></TD
 ></TR
@@ -167,6 +191,68 @@
 ></TT
 > and send
  it back to the client.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:receiveCGIRequest"
+><A NAME="v%3AreceiveCGIRequest"
+></A
+></A
+><B
+>receiveCGIRequest</B
+> :: URI -&gt; String -&gt; String -&gt; [(String, String)] -&gt; <A HREF="Turbinado-Controller-Monad.html#t%3AController"
+>Controller</A
+> ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-Network.html#receiveCGIRequest"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Pull a CGI request from stdin
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:sendCGIResponse"
+><A NAME="v%3AsendCGIResponse"
+></A
+></A
+><B
+>sendCGIResponse</B
+> :: <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; CGI CGIResult</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-Network.html#sendCGIResponse"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Convert the HTTP.Response to a CGI response for stdout.
 </TD
 ></TR
 ><TR

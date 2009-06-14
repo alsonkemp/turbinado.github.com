@@ -69,60 +69,67 @@
 <a name="(line61)"></a><span class='comment'>-- then runs the Controller and View.</span>
 <a name="(line62)"></a><span class='varid'>processRequest</span> <span class='keyglyph'>::</span> <span class='conid'>Controller</span> <span class='conid'>()</span>
 <a name="(line63)"></a><span class='varid'>processRequest</span> <span class='keyglyph'>=</span> <span class='keyword'>do</span>
-<a name="(line64)"></a>          <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" requestHandler : running pre and main filters"</span>
-<a name="(line65)"></a>          <span class='comment'>-- Run the Pre filters, the page</span>
-<a name="(line66)"></a>          <span class='varid'>sequence_</span> <span class='varop'>$</span> <span class='varid'>preFilters</span> <span class='varop'>++</span>
-<a name="(line67)"></a>                      <span class='varid'>customPreFilters</span> <span class='varop'>++</span>
-<a name="(line68)"></a>                      <span class='keyglyph'>[</span> <span class='varid'>retrieveAndRunController</span>
-<a name="(line69)"></a>                      <span class='layout'>,</span> <span class='varid'>checkFormats</span>
-<a name="(line70)"></a>                      <span class='layout'>,</span> <span class='varid'>retrieveAndRunLayout</span>
-<a name="(line71)"></a>                      <span class='keyglyph'>]</span> 
-<a name="(line72)"></a>          <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" requestHandler : running post filters"</span>
-<a name="(line73)"></a>          <span class='varid'>sequence_</span> <span class='layout'>(</span><span class='varid'>customPostFilters</span> <span class='varop'>++</span> <span class='varid'>postFilters</span><span class='layout'>)</span>
-<a name="(line74)"></a>
-<a name="(line75)"></a>
-<a name="(line76)"></a><a name="retrieveAndRunController"></a><span class='comment'>-- | This function dynamically loads (if needed) the 'Controller'</span>
-<a name="(line77)"></a><span class='comment'>-- using the information provided by the 'Routes'.  Controllers reside</span>
-<a name="(line78)"></a><span class='comment'>-- in @App/Controllers@.</span>
-<a name="(line79)"></a><span class='varid'>retrieveAndRunController</span> <span class='keyglyph'>::</span> <span class='conid'>Controller</span> <span class='conid'>()</span>
-<a name="(line80)"></a><span class='varid'>retrieveAndRunController</span> <span class='keyglyph'>=</span>
-<a name="(line81)"></a>           <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunController : Starting"</span>
-<a name="(line82)"></a>              <span class='varid'>e</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getEnvironment</span>
-<a name="(line83)"></a>              <span class='keyword'>case</span> <span class='layout'>(</span><span class='varid'>isResponseComplete</span> <span class='varid'>e</span><span class='layout'>)</span> <span class='keyword'>of</span>
-<a name="(line84)"></a>                <span class='conid'>True</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunController : response was already complete"</span>
-<a name="(line85)"></a>                           <span class='varid'>return</span> <span class='conid'>()</span>
-<a name="(line86)"></a>                <span class='conid'>False</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>co</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getController</span>
-<a name="(line87)"></a>                            <span class='varid'>p</span>  <span class='keyglyph'>&lt;-</span> <span class='varid'>retrieveCode</span> <span class='conid'>CTController</span> <span class='varid'>co</span>
-<a name="(line88)"></a>                            <span class='keyword'>case</span> <span class='varid'>p</span> <span class='keyword'>of</span>
-<a name="(line89)"></a>                              <span class='conid'>CodeLoadController</span> <span class='varid'>p'</span> <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>p'</span>
-<a name="(line90)"></a>                              <span class='conid'>CodeLoadFailure</span>    <span class='varid'>e</span>    <span class='keyglyph'>-&gt;</span> <span class='varid'>errorResponse</span> <span class='varid'>e</span>
-<a name="(line91)"></a>                              <span class='conid'>CodeLoadView</span>       <span class='keyword'>_</span>  <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunController: retrieveCode called, but returned CodeLoadView"</span>
-<a name="(line92)"></a>                              <span class='conid'>CodeLoadMissing</span>         <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunController: retrieveCode called, but returned CodeLoadMissing"</span>
-<a name="(line93)"></a>
-<a name="(line94)"></a><a name="retrieveAndRunLayout"></a><span class='comment'>-- | This function dynamically loads (if needed) the 'View'</span>
-<a name="(line95)"></a><span class='comment'>-- using the information provided by the 'Routes'.  Views reside</span>
-<a name="(line96)"></a><span class='comment'>-- in @App/Views@ and Layouts reside in @App/Layouts@.  </span>
-<a name="(line97)"></a><span class='comment'>-- The 'View' must contain a @markup@ function.</span>
-<a name="(line98)"></a><span class='comment'>-- The first 'View' loaded is usually the Layout, which itself</span>
-<a name="(line99)"></a><span class='comment'>-- loads the actual 'View'.  If the @layout@ setting is empty, then</span>
-<a name="(line100)"></a><span class='comment'>-- no layout is loaded and the default 'View' is loaded.</span>
-<a name="(line101)"></a><span class='varid'>retrieveAndRunLayout</span> <span class='keyglyph'>::</span> <span class='conid'>Controller</span> <span class='conid'>()</span>
-<a name="(line102)"></a><span class='varid'>retrieveAndRunLayout</span> <span class='keyglyph'>=</span>
-<a name="(line103)"></a>           <span class='keyword'>do</span> <span class='varid'>e</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getEnvironment</span>
-<a name="(line104)"></a>              <span class='keyword'>case</span> <span class='layout'>(</span><span class='varid'>isResponseComplete</span> <span class='varid'>e</span><span class='layout'>)</span> <span class='keyword'>of</span>
-<a name="(line105)"></a>                <span class='conid'>True</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunLayout : response was already complete"</span>
-<a name="(line106)"></a>                           <span class='varid'>return</span> <span class='conid'>()</span>
-<a name="(line107)"></a>                <span class='conid'>False</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>l</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getSetting</span> <span class='str'>"layout"</span>
-<a name="(line108)"></a>                            <span class='varid'>p</span>    <span class='keyglyph'>&lt;-</span> <span class='keyword'>case</span> <span class='varid'>l</span> <span class='keyword'>of</span> 
-<a name="(line109)"></a>                                     <span class='conid'>Nothing</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>v</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getView</span>
-<a name="(line110)"></a>                                                   <span class='varid'>retrieveCode</span> <span class='conid'>CTView</span> <span class='varid'>v</span>    <span class='comment'>-- If no Layout, then pull a View</span>
-<a name="(line111)"></a>                                     <span class='conid'>Just</span> <span class='varid'>l'</span> <span class='keyglyph'>-&gt;</span>    <span class='varid'>retrieveCode</span> <span class='conid'>CTLayout</span> <span class='layout'>(</span><span class='varid'>l'</span><span class='layout'>,</span> <span class='str'>"markup"</span><span class='layout'>)</span>
-<a name="(line112)"></a>                            <span class='keyword'>case</span> <span class='varid'>p</span> <span class='keyword'>of</span>
-<a name="(line113)"></a>                              <span class='conid'>CodeLoadView</span>       <span class='varid'>p'</span> <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>evalView</span> <span class='varid'>p'</span>
-<a name="(line114)"></a>                              <span class='conid'>CodeLoadFailure</span>    <span class='varid'>e</span>    <span class='keyglyph'>-&gt;</span> <span class='varid'>errorResponse</span> <span class='varid'>e</span>
-<a name="(line115)"></a>                              <span class='conid'>CodeLoadController</span> <span class='keyword'>_</span>  <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunLayout: retrieveCode called, but returned CodeLoadController"</span>
-<a name="(line116)"></a>                              <span class='conid'>CodeLoadMissing</span>         <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunLayout: retrieveCode called, but returned CodeLoadMissing"</span>
-<a name="(line117)"></a>
-<a name="(line118)"></a>
+<a name="(line64)"></a>          <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" requestHandler : checking to see if the response is complete"</span>
+<a name="(line65)"></a>          <span class='varid'>complete</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>isResponseComplete</span>
+<a name="(line66)"></a>          <span class='keyword'>case</span> <span class='varid'>complete</span> <span class='keyword'>of</span>
+<a name="(line67)"></a>                <span class='conid'>True</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" processRequest : response was already complete"</span>
+<a name="(line68)"></a>                           <span class='varid'>return</span> <span class='conid'>()</span>
+<a name="(line69)"></a>                <span class='conid'>False</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" requestHandler : running pre and main filters"</span>
+<a name="(line70)"></a>                            <span class='comment'>-- Run the Pre filters, the page</span>
+<a name="(line71)"></a>                            <span class='varid'>sequence_</span> <span class='varop'>$</span> <span class='varid'>preFilters</span> <span class='varop'>++</span>
+<a name="(line72)"></a>                                        <span class='varid'>customPreFilters</span> <span class='varop'>++</span>
+<a name="(line73)"></a>                                        <span class='keyglyph'>[</span> <span class='varid'>retrieveAndRunController</span>
+<a name="(line74)"></a>                                        <span class='layout'>,</span> <span class='varid'>checkFormats</span>
+<a name="(line75)"></a>                                        <span class='layout'>,</span> <span class='varid'>retrieveAndRunLayout</span>
+<a name="(line76)"></a>                                        <span class='keyglyph'>]</span> 
+<a name="(line77)"></a>                            <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" requestHandler : running post filters"</span>
+<a name="(line78)"></a>                            <span class='varid'>sequence_</span> <span class='layout'>(</span><span class='varid'>customPostFilters</span> <span class='varop'>++</span> <span class='varid'>postFilters</span><span class='layout'>)</span>
+<a name="(line79)"></a>
+<a name="(line80)"></a>
+<a name="(line81)"></a><a name="retrieveAndRunController"></a><span class='comment'>-- | This function dynamically loads (if needed) the 'Controller'</span>
+<a name="(line82)"></a><span class='comment'>-- using the information provided by the 'Routes'.  Controllers reside</span>
+<a name="(line83)"></a><span class='comment'>-- in @App/Controllers@.</span>
+<a name="(line84)"></a><span class='varid'>retrieveAndRunController</span> <span class='keyglyph'>::</span> <span class='conid'>Controller</span> <span class='conid'>()</span>
+<a name="(line85)"></a><span class='varid'>retrieveAndRunController</span> <span class='keyglyph'>=</span>
+<a name="(line86)"></a>           <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunController : Starting"</span>
+<a name="(line87)"></a>              <span class='varid'>e</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getEnvironment</span>
+<a name="(line88)"></a>              <span class='varid'>complete</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>isResponseComplete</span>
+<a name="(line89)"></a>              <span class='keyword'>case</span> <span class='varid'>complete</span> <span class='keyword'>of</span>
+<a name="(line90)"></a>                <span class='conid'>True</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunController : response was already complete"</span>
+<a name="(line91)"></a>                           <span class='varid'>return</span> <span class='conid'>()</span>
+<a name="(line92)"></a>                <span class='conid'>False</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>co</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getController</span>
+<a name="(line93)"></a>                            <span class='varid'>p</span>  <span class='keyglyph'>&lt;-</span> <span class='varid'>retrieveCode</span> <span class='conid'>CTController</span> <span class='varid'>co</span>
+<a name="(line94)"></a>                            <span class='keyword'>case</span> <span class='varid'>p</span> <span class='keyword'>of</span>
+<a name="(line95)"></a>                              <span class='conid'>CodeLoadController</span> <span class='varid'>p'</span> <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>p'</span>
+<a name="(line96)"></a>                              <span class='conid'>CodeLoadFailure</span>    <span class='varid'>e</span>    <span class='keyglyph'>-&gt;</span> <span class='varid'>errorResponse</span> <span class='varid'>e</span>
+<a name="(line97)"></a>                              <span class='conid'>CodeLoadView</span>       <span class='keyword'>_</span>  <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunController: retrieveCode called, but returned CodeLoadView"</span>
+<a name="(line98)"></a>                              <span class='conid'>CodeLoadMissing</span>         <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunController: retrieveCode called, but returned CodeLoadMissing"</span>
+<a name="(line99)"></a>
+<a name="(line100)"></a><a name="retrieveAndRunLayout"></a><span class='comment'>-- | This function dynamically loads (if needed) the 'View'</span>
+<a name="(line101)"></a><span class='comment'>-- using the information provided by the 'Routes'.  Views reside</span>
+<a name="(line102)"></a><span class='comment'>-- in @App/Views@ and Layouts reside in @App/Layouts@.  </span>
+<a name="(line103)"></a><span class='comment'>-- The 'View' must contain a @markup@ function.</span>
+<a name="(line104)"></a><span class='comment'>-- The first 'View' loaded is usually the Layout, which itself</span>
+<a name="(line105)"></a><span class='comment'>-- loads the actual 'View'.  If the @layout@ setting is empty, then</span>
+<a name="(line106)"></a><span class='comment'>-- no layout is loaded and the default 'View' is loaded.</span>
+<a name="(line107)"></a><span class='varid'>retrieveAndRunLayout</span> <span class='keyglyph'>::</span> <span class='conid'>Controller</span> <span class='conid'>()</span>
+<a name="(line108)"></a><span class='varid'>retrieveAndRunLayout</span> <span class='keyglyph'>=</span>
+<a name="(line109)"></a>           <span class='keyword'>do</span> <span class='varid'>e</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getEnvironment</span>
+<a name="(line110)"></a>              <span class='varid'>complete</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>isResponseComplete</span>
+<a name="(line111)"></a>              <span class='keyword'>case</span> <span class='varid'>complete</span> <span class='keyword'>of</span>
+<a name="(line112)"></a>                <span class='conid'>True</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>debugM</span> <span class='varop'>$</span> <span class='str'>" retrieveAndRunLayout : response was already complete"</span>
+<a name="(line113)"></a>                           <span class='varid'>return</span> <span class='conid'>()</span>
+<a name="(line114)"></a>                <span class='conid'>False</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>l</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getSetting</span> <span class='str'>"layout"</span>
+<a name="(line115)"></a>                            <span class='varid'>p</span>    <span class='keyglyph'>&lt;-</span> <span class='keyword'>case</span> <span class='varid'>l</span> <span class='keyword'>of</span> 
+<a name="(line116)"></a>                                     <span class='conid'>Nothing</span> <span class='keyglyph'>-&gt;</span> <span class='keyword'>do</span> <span class='varid'>v</span> <span class='keyglyph'>&lt;-</span> <span class='varid'>getView</span>
+<a name="(line117)"></a>                                                   <span class='varid'>retrieveCode</span> <span class='conid'>CTView</span> <span class='varid'>v</span>    <span class='comment'>-- If no Layout, then pull a View</span>
+<a name="(line118)"></a>                                     <span class='conid'>Just</span> <span class='varid'>l'</span> <span class='keyglyph'>-&gt;</span>    <span class='varid'>retrieveCode</span> <span class='conid'>CTLayout</span> <span class='layout'>(</span><span class='varid'>l'</span><span class='layout'>,</span> <span class='str'>"markup"</span><span class='layout'>)</span>
+<a name="(line119)"></a>                            <span class='keyword'>case</span> <span class='varid'>p</span> <span class='keyword'>of</span>
+<a name="(line120)"></a>                              <span class='conid'>CodeLoadView</span>       <span class='varid'>p'</span> <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>evalView</span> <span class='varid'>p'</span>
+<a name="(line121)"></a>                              <span class='conid'>CodeLoadFailure</span>    <span class='varid'>e</span>    <span class='keyglyph'>-&gt;</span> <span class='varid'>errorResponse</span> <span class='varid'>e</span>
+<a name="(line122)"></a>                              <span class='conid'>CodeLoadController</span> <span class='keyword'>_</span>  <span class='keyword'>_</span> <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunLayout: retrieveCode called, but returned CodeLoadController"</span>
+<a name="(line123)"></a>                              <span class='conid'>CodeLoadMissing</span>         <span class='keyglyph'>-&gt;</span> <span class='varid'>error</span> <span class='str'>"retrieveAndRunLayout: retrieveCode called, but returned CodeLoadMissing"</span>
+<a name="(line124)"></a>
+<a name="(line125)"></a>
 </pre></body>
 </html>

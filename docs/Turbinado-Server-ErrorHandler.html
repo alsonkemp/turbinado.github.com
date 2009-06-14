@@ -75,17 +75,17 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:handleError"
-><A NAME="v%3AhandleError"
+><A NAME="v:handleHTTPError"
+><A NAME="v%3AhandleHTTPError"
 ></A
 ></A
 ><B
->handleError</B
-> :: Maybe Socket -&gt; Exception -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>handleHTTPError</B
+> :: Socket -&gt; Exception -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
 > -&gt; IO ()</TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-ErrorHandler.html#handleError"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleHTTPError"
 >Source</A
 ></TD
 ></TR
@@ -101,19 +101,73 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:handleTurbinado"
-><A NAME="v%3AhandleTurbinado"
+><A NAME="v:handleCGIError"
+><A NAME="v%3AhandleCGIError"
 ></A
 ></A
 ><B
->handleTurbinado</B
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Server-Exception.html#t%3ATurbinadoException"
+>handleCGIError</B
+> :: Exception -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleCGIError"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:handleHTTPTurbinado"
+><A NAME="v%3AhandleHTTPTurbinado"
+></A
+></A
+><B
+>handleHTTPTurbinado</B
+> :: Socket -&gt; <A HREF="Turbinado-Server-Exception.html#t%3ATurbinadoException"
 >TurbinadoException</A
 > -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
 > -&gt; IO ()</TD
 ><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server-ErrorHandler.html#handleTurbinado"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleHTTPTurbinado"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
+><A NAME="v:handleCGITurbinado"
+><A NAME="v%3AhandleCGITurbinado"
+></A
+></A
+><B
+>handleCGITurbinado</B
+> :: <A HREF="Turbinado-Server-Exception.html#t%3ATurbinadoException"
+>TurbinadoException</A
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server-ErrorHandler.html#handleCGITurbinado"
 >Source</A
 ></TD
 ></TR

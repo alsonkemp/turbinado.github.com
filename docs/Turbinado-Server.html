@@ -85,14 +85,20 @@
 ><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
 ><TR
 ><TD CLASS="decl"
->= <A HREF="#v%3APort"
->Port</A
+>= <A HREF="#v%3AUseHTTP"
+>UseHTTP</A
 > Integer</TD
 ></TR
 ><TR
 ><TD CLASS="decl"
 >| <A HREF="#v%3AUseCGI"
 >UseCGI</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AUseFCGI"
+>UseFCGI</A
 ></TD
 ></TR
 ><TR
@@ -135,9 +141,11 @@
 ></TR
 ><TR
 ><TD CLASS="decl"
-><A HREF="#v%3ArunAsCGIPort"
->runAsCGIPort</A
-> :: PortNumber</TD
+><A HREF="#v%3AstartServer"
+>startServer</A
+> :: <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+> -&gt; IO ()</TD
 ></TR
 ><TR
 ><TD CLASS="s8"
@@ -145,9 +153,11 @@
 ></TR
 ><TR
 ><TD CLASS="decl"
-><A HREF="#v%3AstartServer"
->startServer</A
-> :: PortNumber -&gt; IO ()</TD
+><A HREF="#v%3AprocessCGI"
+>processCGI</A
+> :: (CGI CGIResult -&gt; IO ()) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
 ></TR
 ><TR
 ><TD CLASS="s8"
@@ -157,11 +167,11 @@
 ><TD CLASS="decl"
 ><A HREF="#v%3AworkerLoop"
 >workerLoop</A
-> :: Maybe (MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
 >WorkerPool</A
->) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
-> -&gt; Maybe (Chan Socket) -&gt; IO ()</TD
+> -&gt; Chan Socket -&gt; IO ()</TD
 ></TR
 ><TR
 ><TD CLASS="s8"
@@ -171,7 +181,7 @@
 ><TD CLASS="decl"
 ><A HREF="#v%3AworkerProcessRequest"
 >workerProcessRequest</A
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+> :: Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
 > -&gt; IO ()</TD
 ></TR
@@ -328,12 +338,12 @@
 ><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
 ><TR
 ><TD CLASS="arg"
-><A NAME="v:Port"
-><A NAME="v%3APort"
+><A NAME="v:UseHTTP"
+><A NAME="v%3AUseHTTP"
 ></A
 ></A
 ><B
->Port</B
+>UseHTTP</B
 > Integer</TD
 ><TD CLASS="rdoc"
 ></TD
@@ -346,6 +356,18 @@
 ></A
 ><B
 >UseCGI</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:UseFCGI"
+><A NAME="v%3AUseFCGI"
+></A
+></A
+><B
+>UseFCGI</B
 ></TD
 ><TD CLASS="rdoc"
 ></TD
@@ -457,37 +479,15 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
-><A NAME="v:runAsCGIPort"
-><A NAME="v%3ArunAsCGIPort"
-></A
-></A
-><B
->runAsCGIPort</B
-> :: PortNumber</TD
-><TD CLASS="declbut"
-><A HREF="src/Turbinado-Server.html#runAsCGIPort"
->Source</A
-></TD
-></TR
-></TABLE
-></TD
-></TR
-><TR
-><TD CLASS="s15"
-></TD
-></TR
-><TR
-><TD CLASS="topdecl"
-><TABLE CLASS="declbar"
-><TR
-><TD CLASS="declname"
 ><A NAME="v:startServer"
 ><A NAME="v%3AstartServer"
 ></A
 ></A
 ><B
 >startServer</B
-> :: PortNumber -&gt; IO ()</TD
+> :: <A HREF="Turbinado-Server.html#t%3AFlag"
+>Flag</A
+> -&gt; IO ()</TD
 ><TD CLASS="declbut"
 ><A HREF="src/Turbinado-Server.html#startServer"
 >Source</A
@@ -524,17 +524,43 @@
 ><TABLE CLASS="declbar"
 ><TR
 ><TD CLASS="declname"
+><A NAME="v:processCGI"
+><A NAME="v%3AprocessCGI"
+></A
+></A
+><B
+>processCGI</B
+> :: (CGI CGIResult -&gt; IO ()) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+>Environment</A
+> -&gt; IO ()</TD
+><TD CLASS="declbut"
+><A HREF="src/Turbinado-Server.html#processCGI"
+>Source</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="topdecl"
+><TABLE CLASS="declbar"
+><TR
+><TD CLASS="declname"
 ><A NAME="v:workerLoop"
 ><A NAME="v%3AworkerLoop"
 ></A
 ></A
 ><B
 >workerLoop</B
-> :: Maybe (MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
+> :: MVar <A HREF="Turbinado-Server.html#t%3AWorkerPool"
 >WorkerPool</A
->) -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+> -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
-> -&gt; Maybe (Chan Socket) -&gt; IO ()</TD
+> -&gt; Chan Socket -&gt; IO ()</TD
 ><TD CLASS="declbut"
 ><A HREF="src/Turbinado-Server.html#workerLoop"
 >Source</A
@@ -546,7 +572,7 @@
 ><TR
 ><TD CLASS="doc"
 ><P
->Worker stuff
+>Worker stuff used for HTTP processing
 </P
 ><P
 >The basic loop for a <TT
@@ -577,7 +603,7 @@
 ></A
 ><B
 >workerProcessRequest</B
-> :: Maybe Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
+> :: Socket -&gt; <A HREF="Turbinado-Environment-Types.html#t%3AEnvironment"
 >Environment</A
 > -&gt; IO ()</TD
 ><TD CLASS="declbut"
